@@ -36,3 +36,22 @@ collections:
         options: [megaphone, graduation, award, sun, clock, train, flask, diploma, shield]
       - { name: excerpt, label: Анонс (текст карточки), widget: text, required: false }
       - { name: body, label: Текст новости, widget: markdown }
+
+  - name: announcements
+    label: Объявления
+    label_singular: Объявление
+    folder: src/content/announcements
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    format: frontmatter
+    summary: "{{date}} — {{title}}"
+    fields:
+      - { name: title, label: Заголовок, widget: string }
+      - { name: date, label: Дата, widget: datetime, format: YYYY-MM-DD }
+      - { name: important, label: "Важное (показывать с маркером)", widget: boolean, default: false }
+      - name: icon
+        label: Иконка
+        widget: select
+        options: [alert, calendar, book, utensils]
+      - { name: excerpt, label: "Текст объявления (на главной)", widget: text, required: false }
+      - { name: body, label: "Полный текст", widget: markdown, required: false }

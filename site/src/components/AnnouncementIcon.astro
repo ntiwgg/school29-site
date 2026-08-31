@@ -1,0 +1,28 @@
+---
+/**
+ * Справочник SVG-иконок объявлений.
+ * Внутренняя разметка иконок перенесена 1:1 из блока объявлений главной,
+ * поэтому визуал блока не меняется. Новые иконки добавляются сюда,
+ * в список `icon` в src/content.config.ts и в select Decap (config.yml).
+ */
+const icons: Record<string, string> = {
+  /** Предупреждение — важное объявление (класс notice-important) */
+  alert: '<path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/>',
+  /** Календарь — собрания и события */
+  calendar: '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
+  /** Книга — кружки и обучение */
+  book: '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>',
+  /** Столовые приборы — питание */
+  utensils: '<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>',
+};
+
+interface Props {
+  /** Имя иконки из справочника (ключ записи в `icons`) */
+  name: string;
+}
+
+const { name } = Astro.props;
+const inner = icons[name] ?? icons.alert;
+---
+
+<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={inner} />

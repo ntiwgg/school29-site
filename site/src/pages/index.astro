@@ -1,12 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import NewsCard from '../components/NewsCard.astro';
+import AnnouncementIcon from '../components/AnnouncementIcon.astro';
 import { getCollection } from 'astro:content';
+import { formatDate } from '../lib/news';
 
 /** Четыре последние новости — свежие сверху */
 const latestNews = (await getCollection('news'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 4);
+
+/** Объявления на главной — свежие сверху (блок «Важное для родителей и учеников») */
+const announcements = (await getCollection('announcements'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 const title = 'МБОУ Петрозаводского ГО «СОШ № 29 им. Сепсяковой Т.Ф.» — главная';
 const description = 'Официальный сайт средней общеобразовательной школы № 29 имени Сепсяковой Т.Ф. города Петрозаводска: приём в 1 класс, новости, сведения об образовательной организации.';
@@ -96,46 +102,19 @@ const description = 'Официальный сайт средней общеоб
         <a class="section-link" href="/news/">Все новости и объявления →</a>
       </div>
       <div class="grid grid-2">
-        <article class="notice notice-important" data-od-id="notice-first-class">
-          <div class="notice-icon">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
-          </div>
-          <div>
-            <span class="notice-date">29 августа 2026</span>
-            <h3>1 сентября — День знаний: торжественные линейки</h3>
-            <p>Линейка для 1-х и 11-х классов — в 09:00, для 2–10 классов — в 11:00. Построение на школьном дворе. При себе иметь сменную обувь и хорошее настроение.</p>
-          </div>
-        </article>
-        <article class="notice" data-od-id="notice-meetings">
-          <div class="notice-icon">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-          </div>
-          <div>
-            <span class="notice-date">25 августа 2026</span>
-            <h3>Родительские собрания — первая неделя сентября</h3>
-            <p>Классные родительские собрания пройдут со 2 по 8 сентября. Актуальное расписание — у классных руководителей и в электронном журнале.</p>
-          </div>
-        </article>
-        <article class="notice" data-od-id="notice-courses">
-          <div class="notice-icon">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-          </div>
-          <div>
-            <span class="notice-date">20 августа 2026</span>
-            <h3>Продолжается запись в кружки и секции</h3>
-            <p>Навигатор дополнительного образования Республики Карелия: робототехника, школьный спортивный клуб, театральная студия, «Орлята России». Подать заявку можно через Госуслуги.</p>
-          </div>
-        </article>
-        <article class="notice" data-od-id="notice-food">
-          <div class="notice-icon">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
-          </div>
-          <div>
-            <span class="notice-date">15 августа 2026</span>
-            <h3>Горячая линия по вопросам школьного питания</h3>
-            <p>По вопросам организации питания звоните по телефону +7 (8142) 78-00-33 в рабочие дни с 09:00 до 17:00. Меню публикуется в разделе «Организация питания».</p>
-          </div>
-        </article>
+        {announcements.map((entry) => (
+          <article
+            class={entry.data.important ? 'notice notice-important' : 'notice'}
+            data-od-id={`notice-${entry.id}`}
+          >
+            <div class="notice-icon"><AnnouncementIcon name={entry.data.icon} /></div>
+            <div>
+              <span class="notice-date">{formatDate(entry.data.date.toISOString().slice(0, 10))}</span>
+              <h3>{entry.data.title}</h3>
+              <p>{entry.data.excerpt}</p>
+            </div>
+          </article>
+        ))}
       </div>
     </div>
   </section>
