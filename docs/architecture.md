@@ -2,13 +2,13 @@
 
 > Как устроен проект. Правило для всех ИИ и участников: **соблюдай Architecture.md**. Зависимости направлены вниз: слой может использовать только слои ниже себя.
 
-> **Статус:** актуально на 31.08.2026 — Astro-проект создан (этап 4 завершён); этап 5 в работе: 5a (компоненты) и 5b-1 (Decap CMS + коллекция news) завершены; в 5b-2 добавлена коллекция announcements (4 записи, главная рендерит объявления), остальные коллекции и CI впереди; исправлен критический баг путей Decap (префикс site/ в config.yml).
+> **Статус:** актуально на 31.08.2026 — Astro-проект создан (этап 4 завершён); этап 5 в работе: 5a (компоненты) и 5b-1 (Decap CMS + коллекция news) завершены; в 5b-2 добавлены коллекции announcements (4 записи, главная рендерит объявления) и sveden (14 подразделов по приказу № 1493, страницы /sveden/<slug>/), исправлен критический баг путей Decap (префикс site/ в config.yml); остальные коллекции и CI впереди.
 
 ## Части проекта
 
 - **Astro (SSG):** генерация статических страниц сайта, компонентный подход. Проект — в подпапке `site/` (Astro v7.2.9, шаблон minimal).
 - **Decap CMS:** git-based веб-редактор контента для секретаря/учителя. Подключён через CDN decap-cms@^3.16.0 (public/admin/index.html + public/admin/config.yml); backend — GitHub (дефолтный GitHub OAuth), правки публикуются в ветку dev.
-- **Контент:** Markdown-файлы в репозитории. Сейчас — коллекции news (9 записей в src/content/news/) и announcements (4 записи в src/content/announcements/); схема — src/content.config.ts (Astro content collections).
+- **Контент:** Markdown-файлы в репозитории. Сейчас — коллекции news (9 записей в src/content/news/), announcements (4 записи в src/content/announcements/) и sveden (14 подразделов в src/content/sveden/); схема — src/content.config.ts (Astro content collections).
 - **Дизайн-система:** из OpenDesign (токены, стили, компоненты дизайна).
 
 ## Слои / ответственность
@@ -18,12 +18,15 @@
 Структура проекта (site/):
 
 - `src/pages/*.astro` — статичные страницы сайта: index, o-shkole, sveden, sveden-teachers, bezopasnost, contacts.
+- `src/pages/sveden.astro` — страница «Сведения об образовательной организации» (`/sveden/`): карточки 14 подразделов из коллекции sveden (SvedenCard.astro, сортировка по num); «Педагогический состав» ведёт на отдельную страницу /sveden-teachers/.
+- `src/pages/sveden/[slug].astro` — страница подраздела (`/sveden/<slug>/`) с хлебными крошками и сайдбаром из 14 подразделов; страница /sveden/pedagogicheskiy-sostav/ не генерируется (подраздел живёт на /sveden-teachers/, 404).
 - `src/pages/news/index.astro` — лента новостей (`/news/`), собирается из коллекции news.
 - `src/pages/news/[slug].astro` — страница новости (`/news/[slug]/`) с хлебными крошками.
-- `src/content.config.ts` — схема контент-коллекций (сейчас: news, announcements).
+- `src/content.config.ts` — схема контент-коллекций (сейчас: news, announcements, sveden).
 - `src/content/news/*.md` — записи новостей (9 записей; рубрики, даты).
 - `src/content/announcements/*.md` — записи объявлений (4 записи; поле important — маркер важности, иконки alert/calendar/book/utensils).
-- `src/components/NewsIcon.astro` — справочник 9 иконок рубрик; `src/lib/news.ts` — рубрики и даты новостей; `src/components/AnnouncementIcon.astro` — справочник иконок объявлений (alert, calendar, book, utensils).
+- `src/content/sveden/*.md` — записи подразделов «Сведений об ОО» (14 записей по приказу № 1493; num — порядок 1–14, title/description — как в карточке на /sveden/, тело — markdown-плейсхолдер «Раздел готовится к наполнению»).
+- `src/components/NewsIcon.astro` — справочник 9 иконок рубрик; `src/lib/news.ts` — рубрики и даты новостей; `src/components/AnnouncementIcon.astro` — справочник иконок объявлений (alert, calendar, book, utensils); `src/components/SvedenCard.astro` — карточка подраздела «Сведений об ОО» (num, title, description, ссылка).
 - `src/pages/index.astro` — главная страница берёт 4 последние новости из коллекции и рендерит блок объявлений из коллекции announcements.
 - `public/assets/` — статические ассеты: `css/styles.css`, `js/main.js`, `img/emblem.svg`.
 - `public/admin/` — точка входа Decap CMS: `index.html`, `config.yml`.
@@ -34,13 +37,13 @@
 - **Дизайн-система** — визуальные токены и стили из OpenDesign (сейчас — `public/assets/css/styles.css`). НЕ делает: не содержит контента.
 - **Компоненты** — переиспользуемые элементы интерфейса (шапка, меню, карточки, формы). Выделены первые компоненты (например, NewsIcon.astro); рефакторинг страниц в компоненты завершён в рамках 5a. НЕ делает: не содержит делового контента.
 - **Страницы** — собирают страницу из компонентов и контента. НЕ делает: не хранит контент.
-- **Контент (Markdown)** — фактические тексты и документы сайта: коллекция news (src/content/news/) и коллекция announcements (src/content/announcements/, 4 записи; поле important, иконки через AnnouncementIcon), схема — src/content.config.ts. Рубрики новостей (6: События, Достижения, Объявления, Приём, Спорт, Безопасность) и иконки (9) перенесены 1:1 с дизайна. НЕ делает: не содержит вёрстки.
+- **Контент (Markdown)** — фактические тексты и документы сайта: коллекция news (src/content/news/), коллекция announcements (src/content/announcements/, 4 записи; поле important, иконки через AnnouncementIcon) и коллекция sveden (src/content/sveden/, 14 подразделов по приказу № 1493; поле num задаёт порядок, title/description совпадают 1:1 с карточками на /sveden/, тело — markdown-плейсхолдер), схема — src/content.config.ts. Рубрики новостей (6: События, Достижения, Объявления, Приём, Спорт, Безопасность) и иконки (9) перенесены 1:1 с дизайна. НЕ делает: не содержит вёрстки.
 
 ### Decap CMS
 
 - **Редактор** — веб-интерфейс для наполнения (public/admin/index.html, CDN decap-cms@^3.16.0). НЕ делает: не хранит данные сам — пишет в git.
 - **Backend** — GitHub: вход через дефолтный GitHub OAuth, правки публикуются в ветку dev репозитория ntiwgg/school29-site.
-- **Конфигурация** — public/admin/config.yml: коллекции (сейчас news и announcements) и их поля; новые коллекции добавляются здесь же. Важно: пути в config.yml резолвятся от корня git-репозитория (сайт живёт в подпапке site/), поэтому folder/media_folder обязаны иметь префикс site/ — комментарий-инвариант записан в config.yml; без него контент из админки создавался в корне репо и не попадал на сайт (исправлено 31.08.2026, коммит ebf6d25).
+- **Конфигурация** — public/admin/config.yml: коллекции (сейчас news, announcements и sveden) и их поля; новые коллекции добавляются здесь же. Важно: пути в config.yml резолвятся от корня git-репозитория (сайт живёт в подпапке site/), поэтому folder/media_folder обязаны иметь префикс site/ — комментарий-инвариант записан в config.yml; без него контент из админки создавался в корне репо и не попадал на сайт (исправлено 31.08.2026, коммит ebf6d25).
 
 ## Потоки работы
 
