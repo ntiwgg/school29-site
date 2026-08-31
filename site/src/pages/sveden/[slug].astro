@@ -47,15 +47,16 @@ const { title, description } = entry.data;
 const { Content } = await render(entry);
 
 /**
- * Подраздел «Документы» (slug dokumenty) вместо markdown-тела показывает
- * перечень документов из коллекции documents. Пустая коллекция — плейсхолдер.
- * Сортировка по названию (алфавит), чтобы порядок не зависел от имён файлов.
+ * Подраздел «Документы»: основной контент — markdown-тело dokumenty.md
+ * (реальный перечень из 106 документов). Коллекция documents подключается
+ * отдельным блоком «Прикреплённые файлы» под перечнем, только если появились
+ * записи с загруженными файлами (поле `file`).
  */
-const docs =
+const attachedDocs =
   entry.id === 'dokumenty'
-    ? (await getCollection('documents')).sort((a, b) =>
-        a.data.title.localeCompare(b.data.title, 'ru')
-      )
+    ? (await getCollection('documents'))
+        .filter((doc) => doc.data.file)
+        .sort((a, b) => a.data.title.localeCompare(b.data.title, 'ru'))
     : [];
 ---
 
@@ -94,41 +95,36 @@ const docs =
     </aside>
 
     <div class="content-block" data-od-id="sveden-content">
+      <Content />
       {
-        entry.id === 'dokumenty' ? (
-          docs.length > 0 ? (
-            <section aria-label="Документы образовательной организации">
-              <h2>Документы</h2>
-              <ul class="docs-list">
-                {
-                  docs.map((doc) => (
-                    <li class="doc-card">
-                      <div class="doc-meta">
-                        <span class="doc-type">{doc.data['doc-type']}</span>
-                        {doc.data.date && (
-                          <time class="doc-date" datetime={doc.data.date.toISOString().slice(0, 10)}>
-                            {formatDate(doc.data.date.toISOString().slice(0, 10))}
-                          </time>
-                        )}
-                      </div>
-                      <h3 class="doc-title">{doc.data.title}</h3>
-                      {doc.data.description && <p class="doc-desc">{doc.data.description}</p>}
-                      {doc.data.file && (
-                        <a class="file-link" href={url(doc.data.file)} target="_blank" rel="noopener">
-                          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>
-                          Скачать
-                        </a>
+        attachedDocs.length > 0 && (
+          <section aria-label="Прикреплённые файлы">
+            <h2>Прикреплённые файлы</h2>
+            <ul class="docs-list">
+              {
+                attachedDocs.map((doc) => (
+                  <li class="doc-card">
+                    <div class="doc-meta">
+                      <span class="doc-type">{doc.data['doc-type']}</span>
+                      {doc.data.date && (
+                        <time class="doc-date" datetime={doc.data.date.toISOString().slice(0, 10)}>
+                          {formatDate(doc.data.date.toISOString().slice(0, 10))}
+                        </time>
                       )}
-                    </li>
-                  ))
-                }
-              </ul>
-            </section>
-          ) : (
-            <p>Раздел готовится к наполнению. Актуальная информация публикуется в течение 10 рабочих дней после изменения.</p>
-          )
-        ) : (
-          <Content />
+                    </div>
+                    <h3 class="doc-title">{doc.data.title}</h3>
+                    {doc.data.description && <p class="doc-desc">{doc.data.description}</p>}
+                    {doc.data.file && (
+                      <a class="file-link" href={url(doc.data.file)} target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>
+                        Скачать
+                      </a>
+                    )}
+                  </li>
+                ))
+              }
+            </ul>
+          </section>
         )
       }
     </div>
