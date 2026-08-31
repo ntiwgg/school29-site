@@ -38,8 +38,8 @@ const { title, description, active, withGovLinkIcons = false } = Astro.props;
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{title}</title>
   {description && <meta name="description" content={description} />}
-  <link rel="icon" type="image/svg+xml" href="/assets/img/emblem.svg">
-  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}assets/img/emblem.svg`}>
+  <link rel="stylesheet" href={`${import.meta.env.BASE_URL}assets/css/styles.css`}>
 </head>
 <body>
   <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -54,6 +54,6 @@ const { title, description, active, withGovLinkIcons = false } = Astro.props;
 
   <Footer />
 
-  <script src="/assets/js/main.js" defer></script>
+  <script src={`${import.meta.env.BASE_URL}assets/js/main.js`} defer></script>
 </body>
 </html>

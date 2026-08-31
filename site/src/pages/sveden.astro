@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import SvedenCard from '../components/SvedenCard.astro';
 import { getCollection } from 'astro:content';
+import { url } from '../lib/paths';
 
 const title = 'Сведения об образовательной организации — СОШ № 29 им. Сепсяковой Т.Ф.';
 const description = 'Сведения об образовательной организации по приказу Рособрнадзора № 1493: основные сведения, документы, образование, педагогический состав, питание и другое.';
@@ -14,7 +15,7 @@ const sections = (await getCollection('sveden')).sort((a, b) => a.data.num - b.d
  * /sveden-teachers/, остальные подразделы — на /sveden/<slug>/.
  */
 function sectionHref(slug: string): string {
-  return slug === 'pedagogicheskiy-sostav' ? '/sveden-teachers/' : `/sveden/${slug}/`;
+  return url(slug === 'pedagogicheskiy-sostav' ? '/sveden-teachers/' : `/sveden/${slug}/`);
 }
 ---
 
@@ -22,7 +23,7 @@ function sectionHref(slug: string): string {
   <div class="container">
     <nav class="breadcrumbs" aria-label="Хлебные крошки" data-od-id="breadcrumbs">
       <ol>
-        <li><a href="/">Главная</a></li>
+        <li><a href={url('/')}>Главная</a></li>
         <li><span aria-current="page">Сведения об образовательной организации</span></li>
       </ol>
     </nav>

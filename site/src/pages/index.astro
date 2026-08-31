@@ -4,6 +4,7 @@ import NewsCard from '../components/NewsCard.astro';
 import AnnouncementIcon from '../components/AnnouncementIcon.astro';
 import { getCollection } from 'astro:content';
 import { formatDate, isPublished } from '../lib/news';
+import { url } from '../lib/paths';
 
 /** Четыре последние опубликованные новости — свежие сверху (будущие даты скрыты) */
 const latestNews = (await getCollection('news'))
@@ -32,8 +33,8 @@ const description = 'Официальный сайт средней общеоб
         <h1>Средняя общеобразовательная школа № 29 имени Сепсяковой Т.Ф.</h1>
         <p class="hero-sub">Дружная школьная семья, сильные педагоги и традиции. Опорная школа ОАО «РЖД» — готовим к поступлению в транспортные вузы страны и к жизни в современном мире.</p>
         <div class="hero-cta">
-          <a class="btn btn-primary btn-lg" href="/#priem">Приём в 1 класс</a>
-          <a class="btn btn-outline btn-lg" href="/sveden/">Сведения об образовательной организации</a>
+          <a class="btn btn-primary btn-lg" href={url('/#priem')}>Приём в 1 класс</a>
+          <a class="btn btn-outline btn-lg" href={url('/sveden/')}>Сведения об образовательной организации</a>
         </div>
         <div class="hero-facts">
           <div class="hero-fact"><b>1966</b><span>год основания</span></div>
@@ -101,7 +102,7 @@ const description = 'Официальный сайт средней общеоб
           <span class="eyebrow">Объявления</span>
           <h2>Важное для родителей и учеников</h2>
         </div>
-        <a class="section-link" href="/news/">Все новости и объявления →</a>
+        <a class="section-link" href={url('/news/')}>Все новости и объявления →</a>
       </div>
       <div class="grid grid-2">
         {announcements.map((entry) => (
@@ -129,11 +130,11 @@ const description = 'Официальный сайт средней общеоб
           <span class="eyebrow">Новости</span>
           <h2>Жизнь школы</h2>
         </div>
-        <a class="section-link" href="/news/">Все новости →</a>
+        <a class="section-link" href={url('/news/')}>Все новости →</a>
       </div>
       <div class="grid auto-grid">
         {latestNews.map((entry) => (
-          <NewsCard news={entry} href={`/news/${entry.id}/`} odId={`news-${entry.id}`} />
+          <NewsCard news={entry} href={url(`/news/${entry.id}/`)} odId={`news-${entry.id}`} />
         ))}
       </div>
     </div>
@@ -216,7 +217,7 @@ const description = 'Официальный сайт средней общеоб
           <span class="ql-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span>
           Расписание звонков
         </a>
-        <a class="quick-link" href="/contacts/" data-od-id="quick-contacts">
+        <a class="quick-link" href={url('/contacts/')} data-od-id="quick-contacts">
           <span class="ql-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
           Контакты и обращения
         </a>
@@ -231,7 +232,7 @@ const description = 'Официальный сайт средней общеоб
         <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>
         <div>
           <p style="font-weight:700; color:var(--accent-strong); margin-bottom:.3rem;">Школе 60 лет, но мы молоды душой</p>
-          <p>История школы, достижения учеников и педагогов, партнёрство с ОАО «РЖД» и профильные классы — на странице <a href="/o-shkole/">«О школе»</a>.</p>
+          <p>История школы, достижения учеников и педагогов, партнёрство с ОАО «РЖД» и профильные классы — на странице <a href={url('/o-shkole/')}>«О школе»</a>.</p>
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { getCollection, render } from 'astro:content';
 import { formatDate } from '../../lib/news';
+import { url } from '../../lib/paths';
 
 /**
  * Сайдбар 14 подразделов — подписи совпадают с сайдбаром /sveden-teachers/ 1:1.
@@ -27,7 +28,7 @@ const SIDE_NAV = [
 
 /** URL подраздела: «Педагогический состав» — отдельная страница /sveden-teachers/ */
 function navHref(slug: string): string {
-  return slug === 'pedagogicheskiy-sostav' ? '/sveden-teachers/' : `/sveden/${slug}/`;
+  return url(slug === 'pedagogicheskiy-sostav' ? '/sveden-teachers/' : `/sveden/${slug}/`);
 }
 
 export async function getStaticPaths() {
@@ -62,8 +63,8 @@ const docs =
   <div class="container">
     <nav class="breadcrumbs" aria-label="Хлебные крошки" data-od-id="breadcrumbs">
       <ol>
-        <li><a href="/">Главная</a></li>
-        <li><a href="/sveden/">Сведения об образовательной организации</a></li>
+        <li><a href={url('/')}>Главная</a></li>
+        <li><a href={url('/sveden/')}>Сведения об образовательной организации</a></li>
         <li><span aria-current="page">{title}</span></li>
       </ol>
     </nav>
@@ -113,7 +114,7 @@ const docs =
                       <h3 class="doc-title">{doc.data.title}</h3>
                       {doc.data.description && <p class="doc-desc">{doc.data.description}</p>}
                       {doc.data.file && (
-                        <a class="file-link" href={doc.data.file} target="_blank" rel="noopener">
+                        <a class="file-link" href={url(doc.data.file)} target="_blank" rel="noopener">
                           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>
                           Скачать
                         </a>

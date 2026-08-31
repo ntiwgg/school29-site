@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getEntry } from 'astro:content';
+import { url } from '../lib/paths';
 
 const title = 'Контакты — СОШ № 29 им. Сепсяковой Т.Ф.';
 const description = 'Контакты школы № 29 имени Сепсяковой Т.Ф.: адрес, телефоны, электронная почта, режим работы, форма обращений граждан.';
@@ -32,7 +33,7 @@ function telHref(phone: string): string {
   <div class="container">
     <nav class="breadcrumbs" aria-label="Хлебные крошки" data-od-id="breadcrumbs">
       <ol>
-        <li><a href="/">Главная</a></li>
+        <li><a href={url('/')}>Главная</a></li>
         <li><span aria-current="page">Контакты</span></li>
       </ol>
     </nav>

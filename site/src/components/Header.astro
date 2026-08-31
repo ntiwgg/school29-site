@@ -1,4 +1,6 @@
 ---
+import { url } from '../lib/paths';
+
 /**
  * Шапка сайта: топбар с контактами, логотип, поиск, главное меню.
  * Разметка перенесена 1:1 из исходных страниц; отличается только
@@ -47,8 +49,8 @@ const isActive = (href: string) => active === href;
 
   <div class="header-main">
     <div class="container">
-      <a class="brand" href="/">
-        <img class="brand-logo" src="/assets/img/emblem.svg" alt="Эмблема школы № 29 имени Сепсяковой Т.Ф." width="62" height="72">
+      <a class="brand" href={url('/')}>
+        <img class="brand-logo" src={`${import.meta.env.BASE_URL}assets/img/emblem.svg`} alt="Эмблема школы № 29 имени Сепсяковой Т.Ф." width="62" height="72">
         <span>
           <span class="brand-title">МБОУ Петрозаводского ГО «СОШ № 29 им. Сепсяковой Т.Ф.»</span>
           <span class="brand-sub">Средняя общеобразовательная школа · Петрозаводск</span>
@@ -72,26 +74,26 @@ const isActive = (href: string) => active === href;
   <nav class="main-nav" id="main-nav" aria-label="Главное меню">
     <div class="container">
       <ul class="nav-list">
-        <li class="nav-item"><a class:list={['nav-link', { 'is-active': isActive('/') }]} href="/" aria-current={isActive('/') ? 'page' : undefined}>Главная</a></li>
+        <li class="nav-item"><a class:list={['nav-link', { 'is-active': isActive('/') }]} href={url('/')} aria-current={isActive('/') ? 'page' : undefined}>Главная</a></li>
         <li class="nav-item">
-          <a class:list={['nav-link', { 'is-active': isActive('/o-shkole/') }]} href="/o-shkole/" aria-current={isActive('/o-shkole/') ? 'page' : undefined}>О школе</a>
+          <a class:list={['nav-link', { 'is-active': isActive('/o-shkole/') }]} href={url('/o-shkole/')} aria-current={isActive('/o-shkole/') ? 'page' : undefined}>О школе</a>
           <ul class="submenu">
-            <li><a href="/o-shkole/#history">История школы</a></li>
-            <li><a href="/o-shkole/#achievements">Достижения</a></li>
-            <li><a href="/o-shkole/#rzd">Опорная школа ОАО «РЖД»</a></li>
+            <li><a href={url('/o-shkole/#history')}>История школы</a></li>
+            <li><a href={url('/o-shkole/#achievements')}>Достижения</a></li>
+            <li><a href={url('/o-shkole/#rzd')}>Опорная школа ОАО «РЖД»</a></li>
           </ul>
         </li>
         <li class="nav-item">
-          <a class:list={['nav-link', { 'is-active': isActive('/sveden/') }]} href="/sveden/" aria-current={isActive('/sveden/') ? 'page' : undefined}>Сведения об ОО</a>
+          <a class:list={['nav-link', { 'is-active': isActive('/sveden/') }]} href={url('/sveden/')} aria-current={isActive('/sveden/') ? 'page' : undefined}>Сведения об ОО</a>
           <ul class="submenu">
-            <li><a href="/sveden/">Все 14 подразделов</a></li>
-            <li><a href="/sveden-teachers/">Педагогический состав</a></li>
+            <li><a href={url('/sveden/')}>Все 14 подразделов</a></li>
+            <li><a href={url('/sveden-teachers/')}>Педагогический состав</a></li>
             <li><a href="#">Документы</a></li>
             <li><a href="#">Платные образовательные услуги</a></li>
             <li><a href="#">Организация питания</a></li>
           </ul>
         </li>
-        <li class="nav-item"><a class:list={['nav-link', { 'is-active': isActive('/news/') }]} href="/news/" aria-current={isActive('/news/') ? 'page' : undefined}>Новости</a></li>
+        <li class="nav-item"><a class:list={['nav-link', { 'is-active': isActive('/news/') }]} href={url('/news/')} aria-current={isActive('/news/') ? 'page' : undefined}>Новости</a></li>
         <li class="nav-item">
           <button class="nav-toggle" type="button" aria-expanded="false" aria-haspopup="true">Родителям <span class="caret" aria-hidden="true"></span></button>
           <ul class="submenu">
@@ -122,15 +124,15 @@ const isActive = (href: string) => active === href;
           </ul>
         </li>
         <li class="nav-item">
-          <a class:list={['nav-link', { 'is-active': isActive('/bezopasnost/') }]} href="/bezopasnost/" aria-current={isActive('/bezopasnost/') ? 'page' : undefined}>Безопасность</a>
+          <a class:list={['nav-link', { 'is-active': isActive('/bezopasnost/') }]} href={url('/bezopasnost/')} aria-current={isActive('/bezopasnost/') ? 'page' : undefined}>Безопасность</a>
           <ul class="submenu">
-            <li><a href="/bezopasnost/#antiterror">Антитеррористическая защищённость</a></li>
-            <li><a href="/bezopasnost/#road">Дорожная безопасность</a></li>
-            <li><a href="/bezopasnost/#fire">Пожарная безопасность</a></li>
-            <li><a href="/bezopasnost/#info">Информационная безопасность</a></li>
+            <li><a href={url('/bezopasnost/#antiterror')}>Антитеррористическая защищённость</a></li>
+            <li><a href={url('/bezopasnost/#road')}>Дорожная безопасность</a></li>
+            <li><a href={url('/bezopasnost/#fire')}>Пожарная безопасность</a></li>
+            <li><a href={url('/bezopasnost/#info')}>Информационная безопасность</a></li>
           </ul>
         </li>
-        <li class="nav-item"><a class:list={['nav-link', { 'is-active': isActive('/contacts/') }]} href="/contacts/" aria-current={isActive('/contacts/') ? 'page' : undefined}>Контакты</a></li>
+        <li class="nav-item"><a class:list={['nav-link', { 'is-active': isActive('/contacts/') }]} href={url('/contacts/')} aria-current={isActive('/contacts/') ? 'page' : undefined}>Контакты</a></li>
       </ul>
     </div>
   </nav>

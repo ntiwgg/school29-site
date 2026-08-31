@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import { url } from '../lib/paths';
 
 const title = 'Педагогический состав — Сведения об ОО — СОШ № 29 им. Сепсяковой Т.Ф.';
 const description = 'Педагогический состав школы № 29 имени Сепсяковой Т.Ф.: ФИО педагогов, должности, преподаваемые предметы, квалификационные категории.';
@@ -13,8 +14,8 @@ const teachers = (await getCollection('teachers')).sort((a, b) => a.data.order -
   <div class="container">
     <nav class="breadcrumbs" aria-label="Хлебные крошки" data-od-id="breadcrumbs">
       <ol>
-        <li><a href="/">Главная</a></li>
-        <li><a href="/sveden/">Сведения об образовательной организации</a></li>
+        <li><a href={url('/')}>Главная</a></li>
+        <li><a href={url('/sveden/')}>Сведения об образовательной организации</a></li>
         <li><span aria-current="page">Педагогический состав</span></li>
       </ol>
     </nav>
@@ -30,20 +31,20 @@ const teachers = (await getCollection('teachers')).sort((a, b) => a.data.order -
   <div class="layout container">
     <aside class="side-nav" aria-label="Подразделы сведений об образовательной организации" data-od-id="sveden-sidebar">
       <span class="side-nav-title">Подразделы</span>
-      <a href="/sveden/">01 · Основные сведения</a>
-      <a href="/sveden/">02 · Структура и органы управления</a>
-      <a href="/sveden/">03 · Документы</a>
-      <a href="/sveden/">04 · Образование</a>
-      <a href="/sveden/">05 · Руководство</a>
-      <a class="is-active" href="/sveden-teachers/" aria-current="page">06 · Педагогический состав</a>
-      <a href="/sveden/">07 · Материально-техническое обеспечение. Доступная среда</a>
-      <a href="/sveden/">08 · Платные образовательные услуги</a>
-      <a href="/sveden/">09 · Финансово-хозяйственная деятельность</a>
-      <a href="/sveden/">10 · Вакантные места для приёма</a>
-      <a href="/sveden/">11 · Стипендии и меры поддержки</a>
-      <a href="/sveden/">12 · Международное сотрудничество</a>
-      <a href="/sveden/">13 · Организация питания</a>
-      <a href="/sveden/">14 · Образовательные стандарты и требования</a>
+      <a href={url('/sveden/')}>01 · Основные сведения</a>
+      <a href={url('/sveden/')}>02 · Структура и органы управления</a>
+      <a href={url('/sveden/')}>03 · Документы</a>
+      <a href={url('/sveden/')}>04 · Образование</a>
+      <a href={url('/sveden/')}>05 · Руководство</a>
+      <a class="is-active" href={url('/sveden-teachers/')} aria-current="page">06 · Педагогический состав</a>
+      <a href={url('/sveden/')}>07 · Материально-техническое обеспечение. Доступная среда</a>
+      <a href={url('/sveden/')}>08 · Платные образовательные услуги</a>
+      <a href={url('/sveden/')}>09 · Финансово-хозяйственная деятельность</a>
+      <a href={url('/sveden/')}>10 · Вакантные места для приёма</a>
+      <a href={url('/sveden/')}>11 · Стипендии и меры поддержки</a>
+      <a href={url('/sveden/')}>12 · Международное сотрудничество</a>
+      <a href={url('/sveden/')}>13 · Организация питания</a>
+      <a href={url('/sveden/')}>14 · Образовательные стандарты и требования</a>
     </aside>
 
     <div class="content-block" data-od-id="sveden-content">

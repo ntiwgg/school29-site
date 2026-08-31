@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { url } from '../lib/paths';
 
 const title = 'Безопасность — СОШ № 29 им. Сепсяковой Т.Ф.';
 const description = 'Безопасность школы № 29 имени Сепсяковой Т.Ф.: антитеррористическая защищённость, дорожная, пожарная и информационная безопасность.';
@@ -9,7 +10,7 @@ const description = 'Безопасность школы № 29 имени Се�
   <div class="container">
     <nav class="breadcrumbs" aria-label="Хлебные крошки" data-od-id="breadcrumbs">
       <ol>
-        <li><a href="/">Главная</a></li>
+        <li><a href={url('/')}>Главная</a></li>
         <li><span aria-current="page">Безопасность</span></li>
       </ol>
     </nav>

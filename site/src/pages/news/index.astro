@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import NewsCard from '../../components/NewsCard.astro';
 import { getCollection } from 'astro:content';
 import { isPublished } from '../../lib/news';
+import { url } from '../../lib/paths';
 
 /** Все опубликованные новости, свежие сверху (лента на /news/, будущие даты скрыты) */
 const news = (await getCollection('news'))
@@ -17,7 +18,7 @@ const description = 'Новости школы № 29 имени Сепсяко�
   <div class="container">
     <nav class="breadcrumbs" aria-label="Хлебные крошки" data-od-id="breadcrumbs">
       <ol>
-        <li><a href="/">Главная</a></li>
+        <li><a href={url('/')}>Главная</a></li>
         <li><span aria-current="page">Новости</span></li>
       </ol>
     </nav>
@@ -44,7 +45,7 @@ const description = 'Новости школы № 29 имени Сепсяко�
 
       <div class="grid auto-grid">
         {news.map((entry) => (
-          <NewsCard news={entry} href={`/news/${entry.id}/`} odId={`news-${entry.id}`} />
+          <NewsCard news={entry} href={url(`/news/${entry.id}/`)} odId={`news-${entry.id}`} />
         ))}
       </div>
 
