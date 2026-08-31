@@ -46,4 +46,23 @@ const announcements = defineCollection({
   }),
 });
 
-export const collections = { news, announcements };
+/**
+ * Коллекция «Сведения об образовательной организации»: файлы src/content/sveden/*.md,
+ * 14 подразделов по приказу Рособрнадзора № 1493.
+ * `num` задаёт порядок (1–14) — по нему сортируются карточки на /sveden/ и сайдбар.
+ * `title` и `description` совпадают 1:1 с разметкой карточек /sveden/.
+ * Контент подраздела — markdown-тело файла (рендерится на странице /sveden/<slug>/).
+ */
+const sveden = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/sveden' }),
+  schema: z.object({
+    /** Номер подраздела по приказу № 1493 (1–14) — задаёт порядок отображения */
+    num: z.number(),
+    /** Название подраздела (как в карточке на /sveden/) */
+    title: z.string(),
+    /** Краткое описание для карточки на /sveden/ */
+    description: z.string(),
+  }),
+});
+
+export const collections = { news, announcements, sveden };

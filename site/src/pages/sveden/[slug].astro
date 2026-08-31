@@ -1,0 +1,86 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+/**
+ * Сайдбар 14 подразделов — подписи совпадают с сайдбаром /sveden-teachers/ 1:1.
+ * «Педагогический состав» ведёт на отдельную страницу /sveden-teachers/,
+ * остальные подразделы — на /sveden/<slug>/.
+ */
+const SIDE_NAV = [
+  { slug: 'osnovnye-svedeniya', num: '01', label: 'Основные сведения' },
+  { slug: 'struktura-i-organy-upravleniya', num: '02', label: 'Структура и органы управления' },
+  { slug: 'dokumenty', num: '03', label: 'Документы' },
+  { slug: 'obrazovanie', num: '04', label: 'Образование' },
+  { slug: 'rukovodstvo', num: '05', label: 'Руководство' },
+  { slug: 'pedagogicheskiy-sostav', num: '06', label: 'Педагогический состав' },
+  { slug: 'materialno-tehnicheskoe-obespechenie', num: '07', label: 'Материально-техническое обеспечение. Доступная среда' },
+  { slug: 'platnye-obrazovatelnye-uslugi', num: '08', label: 'Платные образовательные услуги' },
+  { slug: 'finansovo-hozyaystvennaya-deyatelnost', num: '09', label: 'Финансово-хозяйственная деятельность' },
+  { slug: 'vakantnye-mesta', num: '10', label: 'Вакантные места для приёма' },
+  { slug: 'stipendii-i-mery-podderzhki', num: '11', label: 'Стипендии и меры поддержки' },
+  { slug: 'mezhdunarodnoe-sotrudnichestvo', num: '12', label: 'Международное сотрудничество' },
+  { slug: 'organizaciya-pitaniya', num: '13', label: 'Организация питания' },
+  { slug: 'obrazovatelnye-standarty', num: '14', label: 'Образовательные стандарты и требования' },
+];
+
+/** URL подраздела: «Педагогический состав» — отдельная страница /sveden-teachers/ */
+function navHref(slug: string): string {
+  return slug === 'pedagogicheskiy-sostav' ? '/sveden-teachers/' : `/sveden/${slug}/`;
+}
+
+export async function getStaticPaths() {
+  const sections = await getCollection('sveden');
+  // «Педагогический состав» отдаёт /sveden-teachers/ — отдельной страницы /sveden/pedagogicheskiy-sostav/ не генерируем
+  return sections
+    .filter((entry) => entry.id !== 'pedagogicheskiy-sostav')
+    .map((entry) => ({
+      params: { slug: entry.id },
+      props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+const { title, description } = entry.data;
+const { Content } = await render(entry);
+---
+
+<Layout title={`${title} — Сведения об ОО — СОШ № 29 им. Сепсяковой Т.Ф.`} description={description} active="/sveden/">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки" data-od-id="breadcrumbs">
+      <ol>
+        <li><a href="/">Главная</a></li>
+        <li><a href="/sveden/">Сведения об образовательной организации</a></li>
+        <li><span aria-current="page">{title}</span></li>
+      </ol>
+    </nav>
+  </div>
+
+  <section class="page-hero" data-od-id="page-hero">
+    <div class="container">
+      <h1>{title}</h1>
+      <p class="lead">{description}</p>
+    </div>
+  </section>
+
+  <div class="layout container">
+    <aside class="side-nav" aria-label="Подразделы сведений об образовательной организации" data-od-id="sveden-sidebar">
+      <span class="side-nav-title">Подразделы</span>
+      {
+        SIDE_NAV.map((item) => (
+          <a
+            class={item.slug === entry.id ? 'is-active' : undefined}
+            href={navHref(item.slug)}
+            aria-current={item.slug === entry.id ? 'page' : undefined}
+          >
+            {item.num} · {item.label}
+          </a>
+        ))
+      }
+    </aside>
+
+    <div class="content-block" data-od-id="sveden-content">
+      <Content />
+    </div>
+  </div>
+</Layout>

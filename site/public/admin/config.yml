@@ -56,3 +56,17 @@ collections:
         options: [alert, calendar, book, utensils]
       - { name: excerpt, label: "Текст объявления (на главной)", widget: text, required: false }
       - { name: body, label: "Полный текст", widget: markdown, required: false }
+
+  - name: sveden
+    label: Сведения об образовательной организации
+    label_singular: Подраздел сведений
+    folder: site/src/content/sveden
+    create: true
+    slug: "{{slug}}"
+    format: frontmatter
+    summary: "{{num}} — {{title}}"
+    fields:
+      - { name: num, label: "№ подраздела", widget: number, value_type: int, hint: "Порядок подразделов по приказу Рособрнадзора № 1493 (1–14)" }
+      - { name: title, label: Название, widget: string }
+      - { name: description, label: "Краткое описание (карточка на /sveden/)", widget: text }
+      - { name: body, label: "Содержание подраздела", widget: markdown }
