@@ -3,15 +3,17 @@ import Layout from '../layouts/Layout.astro';
 import NewsCard from '../components/NewsCard.astro';
 import AnnouncementIcon from '../components/AnnouncementIcon.astro';
 import { getCollection } from 'astro:content';
-import { formatDate } from '../lib/news';
+import { formatDate, isPublished } from '../lib/news';
 
-/** Четыре последние новости — свежие сверху */
+/** Четыре последние опубликованные новости — свежие сверху (будущие даты скрыты) */
 const latestNews = (await getCollection('news'))
+  .filter((entry) => isPublished(entry.data.date))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 4);
 
-/** Объявления на главной — свежие сверху (блок «Важное для родителей и учеников») */
+/** Опубликованные объявления на главной — свежие сверху (блок «Важное для родителей и учеников») */
 const announcements = (await getCollection('announcements'))
+  .filter((entry) => isPublished(entry.data.date))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 const title = 'МБОУ Петрозаводского ГО «СОШ № 29 им. Сепсяковой Т.Ф.» — главная';

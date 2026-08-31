@@ -2,11 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import NewsCard from '../../components/NewsCard.astro';
 import { getCollection } from 'astro:content';
+import { isPublished } from '../../lib/news';
 
-/** Все новости, свежие сверху (лента на /news/) */
-const news = (await getCollection('news')).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-);
+/** Все опубликованные новости, свежие сверху (лента на /news/, будущие даты скрыты) */
+const news = (await getCollection('news'))
+  .filter((entry) => isPublished(entry.data.date))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 const title = 'Новости — СОШ № 29 им. Сепсяковой Т.Ф.';
 const description = 'Новости школы № 29 имени Сепсяковой Т.Ф.: события, достижения, объявления и безопасность.';

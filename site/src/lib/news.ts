@@ -24,3 +24,17 @@ export function formatDate(iso: string): string {
   const [year, month, day] = iso.split('-');
   return `${Number(day)} ${MONTHS_GENITIVE[Number(month) - 1]} ${year}`;
 }
+
+/**
+ * Планирование публикации: запись считается опубликованной, если её день
+ * уже наступил (сегодня — опубликована). Даты из frontmatter без времени,
+ * поэтому сравнение идёт по началу дня, без сдвигов часовых поясов.
+ * Записи с датой в будущем скрываются с сайта, но остаются в git и админке.
+ */
+export function isPublished(date: Date): boolean {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const day = new Date(date);
+  day.setHours(0, 0, 0, 0);
+  return day <= today;
+}

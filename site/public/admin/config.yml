@@ -26,7 +26,7 @@ collections:
     summary: "{{date}} — {{title}}"
     fields:
       - { name: title, label: Заголовок, widget: string }
-      - { name: date, label: Дата, widget: datetime, format: YYYY-MM-DD }
+      - { name: date, label: Дата, widget: datetime, format: YYYY-MM-DD, hint: "Новость с датой в будущем не показывается на сайте до наступления даты (планирование публикации)" }
       - name: tag
         label: Рубрика
         widget: select
@@ -48,7 +48,7 @@ collections:
     summary: "{{date}} — {{title}}"
     fields:
       - { name: title, label: Заголовок, widget: string }
-      - { name: date, label: Дата, widget: datetime, format: YYYY-MM-DD }
+      - { name: date, label: Дата, widget: datetime, format: YYYY-MM-DD, hint: "Объявление с датой в будущем не показывается на сайте до наступления даты (планирование публикации)" }
       - { name: important, label: "Важное (показывать с маркером)", widget: boolean, default: false }
       - name: icon
         label: Иконка

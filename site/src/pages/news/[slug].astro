@@ -2,17 +2,27 @@
 import Layout from '../../layouts/Layout.astro';
 import NewsIcon from '../../components/NewsIcon.astro';
 import { getCollection, render } from 'astro:content';
-import { TAG_CLASS_MAP, formatDate } from '../../lib/news';
+import { TAG_CLASS_MAP, formatDate, isPublished } from '../../lib/news';
 
 export async function getStaticPaths() {
   const news = await getCollection('news');
-  return news.map((entry) => ({
-    params: { slug: entry.id },
-    props: { entry },
-  }));
+  // Записи с будущей датой не публикуются: их URL отдаёт 404, но файл остаётся в git/админке
+  return news
+    .filter((entry) => isPublished(entry.data.date))
+    .map((entry) => ({
+      params: { slug: entry.id },
+      props: { entry },
+    }));
 }
 
 const { entry } = Astro.props;
+
+// Страховка: если запись вдруг не опубликована (например, дата в будущем),
+// страница не рендерится — 404 вместо утечки будущего контента.
+if (!isPublished(entry.data.date)) {
+  return new Response(null, { status: 404 });
+}
+
 const { title, date, tag, cover } = entry.data;
 const dateISO = date.toISOString().slice(0, 10);
 const { Content } = await render(entry);
