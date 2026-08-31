@@ -65,4 +65,42 @@ const sveden = defineCollection({
   }),
 });
 
-export const collections = { news, announcements, sveden };
+/**
+ * Коллекция «Педагогический состав»: файлы src/content/teachers/*.md.
+ * Поля по ПП РФ № 1802 (п. 11). Текущая таблица на /sveden-teachers/ показывает
+ * 5 колонок (name, position, subjects, category, education) — остальные поля
+ * (degree, profdev, retraining, experience, programs) хранятся для полного
+ * состава сведений и заполняются через Decap. `order` задаёт порядок строк
+ * в таблице (порядок исходной разметки не алфавитный).
+ * Незаполненные поля — пустые строки/массивы по умолчанию, чтобы Decap
+ * сохранял записи с пустыми полями без ошибок схемы.
+ */
+const teachers = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/teachers' }),
+  schema: z.object({
+    /** Порядок строки в таблице (1 — первая) */
+    order: z.number().int(),
+    /** ФИО педагога */
+    name: z.string(),
+    /** Должность */
+    position: z.string(),
+    /** Преподаваемые учебные предметы */
+    subjects: z.string(),
+    /** Квалификационная категория */
+    category: z.string().default(''),
+    /** Образование и квалификация */
+    education: z.string().default(''),
+    /** Учёная степень / звание (пусто, если нет) */
+    degree: z.string().default(''),
+    /** Повышение квалификации за последние 3 года (по строке на курс) */
+    profdev: z.array(z.string()).default([]),
+    /** Профессиональная переподготовка (по строке на курс) */
+    retraining: z.array(z.string()).default([]),
+    /** Общий стаж / стаж по специальности */
+    experience: z.string().default(''),
+    /** Наименование программ, в которых участвует педагог */
+    programs: z.string().default(''),
+  }),
+});
+
+export const collections = { news, announcements, sveden, teachers };

@@ -70,3 +70,34 @@ collections:
       - { name: title, label: Название, widget: string }
       - { name: description, label: "Краткое описание (карточка на /sveden/)", widget: text }
       - { name: body, label: "Содержание подраздела", widget: markdown }
+
+  - name: teachers
+    label: Педагогический состав
+    label_singular: Педагог
+    folder: site/src/content/teachers
+    create: true
+    slug: "{{slug}}"
+    format: frontmatter
+    summary: "{{name}} — {{position}}"
+    fields:
+      - { name: order, label: "Порядок в таблице", widget: number, value_type: int, hint: "Чем меньше число, тем выше строка (1 — первая)" }
+      - { name: name, label: ФИО, widget: string }
+      - { name: position, label: Должность, widget: string }
+      - { name: subjects, label: "Преподаваемые учебные предметы", widget: string }
+      - { name: category, label: "Квалификационная категория", widget: string, required: false }
+      - { name: education, label: "Образование и квалификация", widget: string, required: false }
+      - { name: degree, label: "Учёная степень / звание", widget: string, required: false, hint: "Оставьте пустым, если нет" }
+      - name: profdev
+        label: "Повышение квалификации за 3 года"
+        widget: list
+        required: false
+        hint: "Каждая строка — один курс"
+        field: { label: Курс, name: item, widget: string }
+      - name: retraining
+        label: "Профессиональная переподготовка"
+        widget: list
+        required: false
+        hint: "Каждая строка — одна программа"
+        field: { label: Программа, name: item, widget: string }
+      - { name: experience, label: "Общий стаж / стаж по специальности", widget: string, required: false }
+      - { name: programs, label: "Наименование реализуемых программ", widget: string, required: false }
