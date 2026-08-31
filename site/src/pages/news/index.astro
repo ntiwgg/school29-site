@@ -1,0 +1,61 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NewsCard from '../../components/NewsCard.astro';
+import { getCollection } from 'astro:content';
+
+/** Все новости, свежие сверху (лента на /news/) */
+const news = (await getCollection('news')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+
+const title = 'Новости — СОШ № 29 им. Сепсяковой Т.Ф.';
+const description = 'Новости школы № 29 имени Сепсяковой Т.Ф.: события, достижения, объявления и безопасность.';
+---
+
+<Layout title={title} description={description} active="/news/">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки" data-od-id="breadcrumbs">
+      <ol>
+        <li><a href="/">Главная</a></li>
+        <li><span aria-current="page">Новости</span></li>
+      </ol>
+    </nav>
+  </div>
+
+  <section class="page-hero" data-od-id="page-hero">
+    <div class="container">
+      <h1>Новости школы</h1>
+      <p class="lead">События, достижения и объявления. Актуальные новости также публикуются в официальной группе школы ВКонтакте — нашем госпаблике.</p>
+    </div>
+  </section>
+
+  <section class="section" data-od-id="news-list">
+    <div class="container">
+      <!-- Фильтр для прототипа: переключатели без JS, активная рубрика помечена -->
+      <div class="news-filters" role="group" aria-label="Рубрики новостей">
+        <a class="filter-chip is-active" href="#" aria-current="true">Все</a>
+        <a class="filter-chip" href="#">События</a>
+        <a class="filter-chip" href="#">Достижения</a>
+        <a class="filter-chip" href="#">Объявления</a>
+        <a class="filter-chip" href="#">Спорт</a>
+        <a class="filter-chip" href="#">Безопасность</a>
+      </div>
+
+      <div class="grid auto-grid">
+        {news.map((entry) => (
+          <NewsCard news={entry} href={`/news/${entry.id}/`} odId={`news-${entry.id}`} />
+        ))}
+      </div>
+
+      <nav class="pagination" aria-label="Страницы новостей">
+        <span class="is-current" aria-current="page">1</span>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <span class="page-ellipsis" aria-hidden="true">…</span>
+        <a href="#">12</a>
+        <a href="#" aria-label="Следующая страница">→</a>
+      </nav>
+    </div>
+  </section>
+</Layout>

@@ -2,33 +2,30 @@
 /**
  * Карточка новости: обложка-иконка, дата, рубрика, заголовок, анонс, ссылка.
  * Разметка идентична на главной и на странице «Новости».
+ * Данные берутся из коллекции контента `news` (src/content/news).
  */
+import type { CollectionEntry } from 'astro:content';
+import NewsIcon from './NewsIcon.astro';
+import { TAG_CLASS_MAP, formatDate } from '../lib/news';
+
 interface Props {
-  /** Идентификатор для дизайн-системы OpenDesign */
-  odId: string;
-  /** Дата в машиночитаемом виде, например 2026-08-27 */
-  datetime: string;
-  /** Дата для отображения, например 27 августа 2026 */
-  date: string;
-  /** Класс рубрики: tag-event | tag-announce | tag-achiev | tag-safe */
-  tagClass: string;
-  /** Текст рубрики */
-  tag: string;
+  /** Запись новости из коллекции `news` */
+  news: CollectionEntry<'news'>;
   /** Ссылка карточки (заголовок и «Читать далее») */
   href: string;
-  /** Заголовок новости */
-  title: string;
-  /** Текст анонса */
-  text: string;
+  /** Идентификатор для дизайн-системы OpenDesign */
+  odId: string;
 }
 
-const { odId, datetime, date, tagClass, tag, href, title, text } = Astro.props;
+const { news, href, odId } = Astro.props;
+const { title, date, tag, excerpt, cover } = news.data;
+const dateISO = date.toISOString().slice(0, 10);
 ---
 
 <article class="card news-card" data-od-id={odId}>
-  <div class="news-cover"><slot name="cover" /></div>
-  <span class="card-meta"><time datetime={datetime}>{date}</time><span class={tagClass}>{tag}</span></span>
+  <div class="news-cover"><NewsIcon name={cover ?? 'megaphone'} /></div>
+  <span class="card-meta"><time datetime={dateISO}>{formatDate(dateISO)}</time><span class={`tag ${TAG_CLASS_MAP[tag]}`}>{tag}</span></span>
   <h3><a href={href}>{title}</a></h3>
-  <p>{text}</p>
+  <p>{excerpt}</p>
   <a class="card-arrow" href={href}>Читать далее →</a>
 </article>

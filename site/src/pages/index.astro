@@ -1,6 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import NewsCard from '../components/NewsCard.astro';
+import { getCollection } from 'astro:content';
+
+/** Четыре последние новости — свежие сверху */
+const latestNews = (await getCollection('news'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 4);
 
 const title = 'МБОУ Петрозаводского ГО «СОШ № 29 им. Сепсяковой Т.Ф.» — главная';
 const description = 'Официальный сайт средней общеобразовательной школы № 29 имени Сепсяковой Т.Ф. города Петрозаводска: приём в 1 класс, новости, сведения об образовательной организации.';
@@ -145,18 +151,9 @@ const description = 'Официальный сайт средней общеоб
         <a class="section-link" href="/news/">Все новости →</a>
       </div>
       <div class="grid auto-grid">
-        <NewsCard odId="news-card-year-start" datetime="2026-08-27" date="27 августа 2026" tagClass="tag tag-event" tag="События" href="/news/" title="Школа готова к новому учебному году: итоги приёмки" text="Комиссия проверила готовность кабинетов, спортивного зала и столовой. Проведён косметический ремонт коридоров и обновлена материально-техническая база.">
-          <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" slot="cover"><path d="M12 2v4m0 0a5 5 0 0 1 5 5h-2a3 3 0 0 0-3-3 3 3 0 0 0-3 3H7a5 5 0 0 1 5-5Z"/><path d="M5 12h14v8H5z"/></svg>
-        </NewsCard>
-        <NewsCard odId="news-card-admission" datetime="2026-08-21" date="21 августа 2026" tagClass="tag tag-announce" tag="Приём" href="/news/" title="Наши выпускники стали студентами транспортных вузов" text="В 2026 году 11 выпускников поступили в РУТ (МИИТ) и ПГУПС, ещё 14 — в вузы Петрозаводска и Санкт-Петербурга. Поздравляем ребят и родителей!">
-          <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" slot="cover"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/><path d="M22 10v6"/></svg>
-        </NewsCard>
-        <NewsCard odId="news-card-teacher-award" datetime="2026-08-14" date="14 августа 2026" tagClass="tag tag-achiev" tag="Достижения" href="/news/" title="Учитель школы № 29 — лауреат конкурса «Учитель года Карелии»" text="Учитель начальных классов Фёдорова И.В. вошла в число пяти лауреатов республиканского этапа и представит Карелию на всероссийском уровне.">
-          <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" slot="cover"><circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/></svg>
-        </NewsCard>
-        <NewsCard odId="news-card-summer" datetime="2026-08-06" date="6 августа 2026" tagClass="tag tag-event" tag="События" href="/news/" title="Летняя трудовая практика: приводим в порядок пришкольную территорию" text="Старшеклассники ухаживали за цветниками и спортивной площадкой. Благодарим ребят за помощь школе!">
-          <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" slot="cover"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-        </NewsCard>
+        {latestNews.map((entry) => (
+          <NewsCard news={entry} href={`/news/${entry.id}/`} odId={`news-${entry.id}`} />
+        ))}
       </div>
     </div>
   </section>

@@ -1,0 +1,54 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NewsIcon from '../../components/NewsIcon.astro';
+import { getCollection, render } from 'astro:content';
+import { TAG_CLASS_MAP, formatDate } from '../../lib/news';
+
+export async function getStaticPaths() {
+  const news = await getCollection('news');
+  return news.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { title, date, tag, cover } = entry.data;
+const dateISO = date.toISOString().slice(0, 10);
+const { Content } = await render(entry);
+---
+
+<Layout title={`${title} — Новости — СОШ № 29 им. Сепсяковой Т.Ф.`} description={entry.data.excerpt} active="/news/">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки" data-od-id="breadcrumbs">
+      <ol>
+        <li><a href="/">Главная</a></li>
+        <li><a href="/news/">Новости</a></li>
+        <li><span aria-current="page">{title}</span></li>
+      </ol>
+    </nav>
+  </div>
+
+  <article class="article" data-od-id={`news-article-${entry.id}`}>
+    <div class="container">
+      <header class="article-header">
+        <div class="article-cover">
+          <NewsIcon name={cover ?? 'megaphone'} />
+        </div>
+        <p class="article-meta">
+          <time datetime={dateISO}>{formatDate(dateISO)}</time>
+          <span class={`tag ${TAG_CLASS_MAP[tag]}`}>{tag}</span>
+        </p>
+        <h1>{title}</h1>
+      </header>
+
+      <div class="article-body">
+        <Content />
+      </div>
+
+      <p class="article-back">
+        <a class="btn btn-outline" href="/news/">← Назад к новостям</a>
+      </p>
+    </div>
+  </article>
+</Layout>

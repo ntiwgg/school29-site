@@ -1094,3 +1094,74 @@ html.eye-friendly .hero-fact span,
 html.eye-friendly .card-meta,
 html.eye-friendly .news-date,
 html.eye-friendly .breadcrumbs { color: #333f3d; }
+
+/* ---------- 25. СТРАНИЦА НОВОСТИ (ARTICLE) ---------- */
+.article { padding: clamp(1.5rem, 3vw, 2.5rem) 0 clamp(3rem, 6vw, 4.5rem); }
+.article .container { max-width: 860px; }
+.article-header { margin-bottom: 2rem; }
+.article-cover {
+  width: 64px; height: 64px;
+  border-radius: 16px;
+  background: var(--surface-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  margin-bottom: 1.1rem;
+}
+.article-cover svg { width: 34px; height: 34px; }
+.article-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font: 600 0.8125rem var(--font);
+  color: var(--muted);
+  margin: 0 0 0.7rem;
+}
+.article-header h1 { margin-bottom: 0; }
+
+.article-body { font-size: 1.0625rem; line-height: 1.75; color: var(--fg); }
+.article-body p { margin-bottom: 1.15em; }
+.article-body h2 {
+  font-size: 1.4rem;
+  margin: 1.8em 0 0.6em;
+  padding-top: 0.6em;
+  border-top: 1px solid var(--border);
+}
+.article-body h3 { font-size: 1.15rem; margin: 1.4em 0 0.5em; }
+.article-body ul, .article-body ol { margin-bottom: 1.15em; }
+.article-body li { margin-bottom: 0.4em; }
+.article-body blockquote {
+  margin: 1.4em 0;
+  padding: 0.9rem 1.25rem;
+  border-left: 4px solid var(--accent);
+  background: var(--accent-soft);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--muted);
+}
+.article-body blockquote p:last-child { margin-bottom: 0; }
+.article-body a { color: var(--accent); text-decoration: underline; }
+.article-body a:hover { color: var(--accent-strong); }
+.article-body img {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  margin: 1.2em 0;
+}
+.article-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2em 0;
+  font-size: 0.9375rem;
+}
+.article-body th, .article-body td {
+  border: 1px solid var(--border);
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+}
+.article-body th { background: var(--surface-2); font-weight: 700; }
+.article-body hr { border: none; border-top: 1px solid var(--border); margin: 2em 0; }
+
+.article-back { margin: 2.5rem 0 0; }
+html.eye-friendly .article-body { color: #000; }
+html.eye-friendly .article-body blockquote { color: #1c2b29; }

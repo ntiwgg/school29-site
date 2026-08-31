@@ -1,0 +1,38 @@
+# Decap CMS — конфигурация сайта школы № 29
+# Документация: https://decapcms.org/docs/configuration-options/
+
+backend:
+  name: github
+  repo: ntiwgg/school29-site
+  branch: dev
+  # Внешний OAuth Decap по умолчанию: без собственного OAuth App и без client_id.
+  # Decap сам обращается к своему OAuth-прокси (https://api.netlify.com/auth → GitHub).
+  # base_url НЕ указываем: это адрес OAuth-сервера, а не GitHub API —
+  # api_root для GitHub уже по умолчанию https://api.github.com.
+
+# Изображения из редактора попадают в public/uploads (в git!) и отдаются с /uploads/
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: news
+    label: Новости
+    label_singular: Новость
+    folder: src/content/news
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    format: frontmatter
+    summary: "{{date}} — {{title}}"
+    fields:
+      - { name: title, label: Заголовок, widget: string }
+      - { name: date, label: Дата, widget: datetime, format: YYYY-MM-DD }
+      - name: tag
+        label: Рубрика
+        widget: select
+        options: [События, Достижения, Объявления, Приём, Спорт, Безопасность]
+      - name: cover
+        label: Иконка
+        widget: select
+        options: [megaphone, graduation, award, sun, clock, train, flask, diploma, shield]
+      - { name: excerpt, label: Анонс (текст карточки), widget: text, required: false }
+      - { name: body, label: Текст новости, widget: markdown }
