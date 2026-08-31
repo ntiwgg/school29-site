@@ -10,15 +10,16 @@ backend:
   # base_url НЕ указываем: это адрес OAuth-сервера, а не GitHub API —
   # api_root для GitHub уже по умолчанию https://api.github.com.
 
-# Изображения из редактора попадают в public/uploads (в git!) и отдаются с /uploads/
-media_folder: public/uploads
+# Изображения из редактора попадают в site/public/uploads (в git!) и отдаются с /uploads/
+# Пути Decap резолвятся от КОРНЯ git-репозитория (сайт живёт в подпапке site/), поэтому все пути имеют префикс site/.
+media_folder: site/public/uploads
 public_folder: /uploads
 
 collections:
   - name: news
     label: Новости
     label_singular: Новость
-    folder: src/content/news
+    folder: site/src/content/news
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     format: frontmatter
@@ -40,7 +41,7 @@ collections:
   - name: announcements
     label: Объявления
     label_singular: Объявление
-    folder: src/content/announcements
+    folder: site/src/content/announcements
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     format: frontmatter
