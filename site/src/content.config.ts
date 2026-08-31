@@ -103,4 +103,50 @@ const teachers = defineCollection({
   }),
 });
 
-export const collections = { news, announcements, sveden, teachers };
+/**
+ * Коллекция «Документы»: файлы src/content/documents/*.md.
+ * Перечень документов на /sveden/dokumenty/ (устав, локальные акты, приказы,
+ * отчёты, договоры). `doc-type` — тип документа (метка на карточке),
+ * `file` — путь к файлу в /uploads или /assets (пусто, пока файл не загружен),
+ * `date` — дата документа (пусто, если не определена), `description` — краткое
+ * описание. Тело файла — аннотация/примечание (необязательно).
+ */
+const documents = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/documents' }),
+  schema: z.object({
+    /** Название документа */
+    title: z.string(),
+    /** Тип документа — метка на карточке (справочник совпадает с Decap) */
+    'doc-type': z.enum(['Устав', 'ЛНА', 'Приказ', 'Отчёт', 'Договор', 'Иное']),
+    /** Дата документа, формат YYYY-MM-DD */
+    date: z.coerce.date().optional(),
+    /** Путь к файлу в /uploads или /assets */
+    file: z.string().optional(),
+    /** Краткое описание / аннотация */
+    description: z.string().optional(),
+  }),
+});
+
+/**
+ * Коллекция «Контакты» — единый файл src/content/contacts.md (single-file,
+ * в Decap это file-коллекция). Значения перенесены 1:1 из разметки /contacts/
+ * (плейсхолдеры дизайна). `phones` и `requisites` — списки строк
+ * «Метка: значение» — рендерятся в contacts.astro с сохранением разметки.
+ */
+const contacts = defineCollection({
+  loader: glob({ pattern: 'contacts.md', base: './src/content' }),
+  schema: z.object({
+    /** Почтовый адрес */
+    address: z.string(),
+    /** Телефоны: «Метка: +7 (8142) 00-00-00» */
+    phones: z.array(z.string()),
+    /** Электронная почта */
+    email: z.string(),
+    /** Режим работы */
+    workhours: z.string(),
+    /** Реквизиты: «Метка: значение» (наименование, ИНН, ОГРН и т.п.) */
+    requisites: z.array(z.string()),
+  }),
+});
+
+export const collections = { news, announcements, sveden, teachers, documents, contacts };

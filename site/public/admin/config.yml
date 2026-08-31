@@ -101,3 +101,46 @@ collections:
         field: { label: Программа, name: item, widget: string }
       - { name: experience, label: "Общий стаж / стаж по специальности", widget: string, required: false }
       - { name: programs, label: "Наименование реализуемых программ", widget: string, required: false }
+
+  - name: documents
+    label: Документы
+    label_singular: Документ
+    folder: site/src/content/documents
+    create: true
+    slug: "{{slug}}"
+    format: frontmatter
+    summary: "{{doc-type}} — {{title}}"
+    fields:
+      - { name: title, label: "Название документа", widget: string }
+      - name: doc-type
+        label: "Тип документа"
+        widget: select
+        options: [Устав, ЛНА, Приказ, Отчёт, Договор, Иное]
+      - { name: date, label: "Дата документа", widget: date, format: YYYY-MM-DD, required: false, hint: "Оставьте пустым, если дата не определена" }
+      - { name: file, label: "Файл", widget: file, required: false, hint: "Файл из медиабиблиотеки (загружается в /uploads). Пока файла нет — поле пустое" }
+      - { name: description, label: "Краткое описание", widget: text, required: false }
+      - { name: body, label: "Аннотация / примечание", widget: markdown, required: false }
+
+  - name: contacts
+    label: Контакты
+    files:
+      - name: contacts
+        label: Контакты
+        file: site/src/content/contacts.md
+        format: frontmatter
+        fields:
+          - { name: address, label: "Адрес", widget: string }
+          - name: phones
+            label: "Телефоны"
+            widget: list
+            required: false
+            hint: "Каждая строка в формате «Метка: номер», например «Приёмная: +7 (8142) 78-00-29»"
+            field: { label: Телефон, name: item, widget: string }
+          - { name: email, label: "Электронная почта", widget: string }
+          - { name: workhours, label: "Режим работы", widget: string }
+          - name: requisites
+            label: "Реквизиты"
+            widget: list
+            required: false
+            hint: "Каждая строка в формате «Метка: значение», например «ИНН / КПП: 1001000000 / 100101001»"
+            field: { label: Реквизит, name: item, widget: string }

@@ -1,8 +1,31 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getEntry } from 'astro:content';
 
 const title = 'Контакты — СОШ № 29 им. Сепсяковой Т.Ф.';
 const description = 'Контакты школы № 29 имени Сепсяковой Т.Ф.: адрес, телефоны, электронная почта, режим работы, форма обращений граждан.';
+
+/**
+ * Единая запись коллекции contacts (src/content/contacts.md) —
+ * адрес, телефоны, e-mail, режим работы и реквизиты редактируются через Decap.
+ */
+const contact = await getEntry('contacts', 'contacts');
+if (!contact) {
+  throw new Error('Коллекция contacts пуста: заполните src/content/contacts.md');
+}
+const { address, phones, email, workhours, requisites } = contact.data;
+
+/** Строка «Метка: значение» → { label, value } (разделитель — первое «: ») */
+function splitLabelValue(line: string): { label: string; value: string } {
+  const separator = line.indexOf(': ');
+  if (separator === -1) return { label: line, value: '' };
+  return { label: line.slice(0, separator), value: line.slice(separator + 2) };
+}
+
+/** «+7 (8142) 78-00-29» → tel:+78142780029 (только цифры) */
+function telHref(phone: string): string {
+  return `tel:+${phone.replace(/\D/g, '')}`;
+}
 ---
 
 <Layout title={title} description={description} active="/contacts/">
@@ -38,37 +61,32 @@ const description = 'Контакты школы № 29 имени Сепсяк�
           <ul>
             <li>
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <span>185031, Республика Карелия, г. Петрозаводск, ул. Лыжная, д. 4</span>
+              <span>{address}</span>
             </li>
             <li>
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
-              <a href="mailto:school29@petrozavodsk-edu.ru">school29@petrozavodsk-edu.ru</a>
+              <a href={`mailto:${email}`}>{email}</a>
             </li>
             <li>
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-              <span>Пн–Пт 08:00–19:00, Сб 08:00–15:00, Вс — выходной</span>
+              <span>{workhours}</span>
             </li>
           </ul>
         </div>
         <div class="contact-block">
           <h3>Телефоны</h3>
           <ul>
-            <li>
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              <span>Приёмная: <a href="tel:+78142780029">+7 (8142) 78-00-29</a></span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              <span>Директор: <a href="tel:+78142780030">+7 (8142) 78-00-30</a></span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              <span>Учительская: <a href="tel:+78142780032">+7 (8142) 78-00-32</a></span>
-            </li>
-            <li>
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              <span>Горячая линия по питанию: <a href="tel:+78142780033">+7 (8142) 78-00-33</a></span>
-            </li>
+            {
+              phones.map((phone) => {
+                const { label, value } = splitLabelValue(phone);
+                return (
+                  <li>
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <span>{label}: <a href={telHref(value)}>{value}</a></span>
+                  </li>
+                );
+              })
+            }
           </ul>
         </div>
       </section>
@@ -110,12 +128,14 @@ const description = 'Контакты школы № 29 имени Сепсяк�
         <table>
           <caption>Реквизиты учреждения <!-- Плейсхолдер: заменить на реальные данные --></caption>
           <tbody>
-            <tr><th scope="row">Полное наименование</th><td>Муниципальное бюджетное общеобразовательное учреждение Петрозаводского городского округа «Средняя общеобразовательная школа № 29 имени Сепсяковой Т.Ф.»</td></tr>
-            <tr><th scope="row">Сокращённое наименование</th><td>МБОУ Петрозаводского ГО «СОШ № 29 им. Сепсяковой Т.Ф.»</td></tr>
-            <tr><th scope="row">Учредитель</th><td>Петрозаводский городской округ в лице Администрации Петрозаводского городского округа</td></tr>
-            <tr><th scope="row">ИНН / КПП</th><td>1001000000 / 100101001</td></tr>
-            <tr><th scope="row">ОГРН</th><td>1021000000000</td></tr>
-            <tr><th scope="row">Директор</th><td>Петрова Наталья Викторовна</td></tr>
+            {
+              requisites.map((row) => {
+                const { label, value } = splitLabelValue(row);
+                return (
+                  <tr><th scope="row">{label}</th><td>{value}</td></tr>
+                );
+              })
+            }
           </tbody>
         </table>
       </div>

@@ -1165,3 +1165,39 @@ html.eye-friendly .breadcrumbs { color: #333f3d; }
 .article-back { margin: 2.5rem 0 0; }
 html.eye-friendly .article-body { color: #000; }
 html.eye-friendly .article-body blockquote { color: #1c2b29; }
+
+/* ---------- 26. ДОКУМЕНТЫ (КАРТОЧКИ, /sveden/dokumenty/) ---------- */
+.docs-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.9rem; }
+.docs-list li {
+  margin: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.15rem;
+  box-shadow: var(--shadow-sm);
+}
+.docs-list li:hover { border-color: var(--accent); }
+.doc-meta { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.4rem; }
+.doc-type {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.65rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font: 600 0.75rem var(--font);
+  letter-spacing: 0.02em;
+}
+.doc-date { font-size: 0.8125rem; color: var(--muted); }
+.doc-title { margin: 0 0 0.35rem; font-size: 1.05rem; font-weight: 600; }
+.doc-desc { margin: 0 0 0.65rem; font-size: 0.9rem; color: var(--muted); }
+.file-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--accent);
+  font: 600 0.875rem var(--font);
+  text-decoration: none;
+}
+.file-link:hover { color: var(--accent-strong); text-decoration: underline; }
+.file-link svg { flex: none; }
