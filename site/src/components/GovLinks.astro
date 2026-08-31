@@ -1,0 +1,37 @@
+---
+/**
+ * Полоса ссылок на государственные ресурсы между <main> и <footer>.
+ * Повторяется на всех страницах; на главной первые два чипа — с иконками.
+ */
+interface Props {
+  /** Показывать иконки на первых двух чипах (главная страница) */
+  withIcons?: boolean;
+}
+
+const { withIcons = false } = Astro.props;
+
+const iconLandmark = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>';
+const iconClock = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>';
+
+const chips = [
+  { label: 'Минпросвещения России', icon: withIcons ? iconLandmark : undefined },
+  { label: 'Минобрнауки России', icon: withIcons ? iconClock : undefined },
+  { label: 'Госуслуги' },
+  { label: '«Решаем вместе»' },
+  { label: 'bus.gov.ru — оценка качества' },
+  { label: 'Управление образования Администрации ПГО' },
+];
+---
+
+<section class="gov-links" data-od-id="gov-links" aria-label="Ссылки на государственные ресурсы">
+  <div class="container">
+    {
+      chips.map((chip) => (
+        <a class="gov-chip" href="#">
+          {chip.icon && <Fragment set:html={chip.icon} />}
+          {chip.label}
+        </a>
+      ))
+    }
+  </div>
+</section>

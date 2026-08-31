@@ -1,0 +1,34 @@
+---
+/**
+ * Карточка новости: обложка-иконка, дата, рубрика, заголовок, анонс, ссылка.
+ * Разметка идентична на главной и на странице «Новости».
+ */
+interface Props {
+  /** Идентификатор для дизайн-системы OpenDesign */
+  odId: string;
+  /** Дата в машиночитаемом виде, например 2026-08-27 */
+  datetime: string;
+  /** Дата для отображения, например 27 августа 2026 */
+  date: string;
+  /** Класс рубрики: tag-event | tag-announce | tag-achiev | tag-safe */
+  tagClass: string;
+  /** Текст рубрики */
+  tag: string;
+  /** Ссылка карточки (заголовок и «Читать далее») */
+  href: string;
+  /** Заголовок новости */
+  title: string;
+  /** Текст анонса */
+  text: string;
+}
+
+const { odId, datetime, date, tagClass, tag, href, title, text } = Astro.props;
+---
+
+<article class="card news-card" data-od-id={odId}>
+  <div class="news-cover"><slot name="cover" /></div>
+  <span class="card-meta"><time datetime={datetime}>{date}</time><span class={tagClass}>{tag}</span></span>
+  <h3><a href={href}>{title}</a></h3>
+  <p>{text}</p>
+  <a class="card-arrow" href={href}>Читать далее →</a>
+</article>

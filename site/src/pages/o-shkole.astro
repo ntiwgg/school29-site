@@ -1,346 +1,130 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>О школе — СОШ № 29 им. Сепсяковой Т.Ф.</title>
-  <meta name="description" content="История, достижения и статус опорной школы ОАО «РЖД» школы № 29 имени Сепсяковой Т.Ф. города Петрозаводска.">
-  <link rel="icon" type="image/svg+xml" href="/assets/img/emblem.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/styles.css">
-</head>
-<body>
-  <a class="skip-link" href="#main">Перейти к содержанию</a>
+---
+import Layout from '../layouts/Layout.astro';
 
-  <header class="site-header" data-od-id="site-header">
-    <div class="header-top">
-      <div class="container">
-        <div class="header-contacts">
-          <a href="tel:+78142780029" aria-label="Позвонить в школу">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            +7 (8142) 78-00-29
-          </a>
-          <a href="mailto:school29@petrozavodsk-edu.ru" aria-label="Написать на почту">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
-            school29@petrozavodsk-edu.ru
-          </a>
-          <span class="hide-sm">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            Пн–Пт 08:00–19:00
-          </span>
-        </div>
-        <div class="header-tools">
-          <button class="eye-btn" type="button">Версия для слабовидящих</button>
-          <div class="socials">
-            <a href="#" aria-label="Официальная страница ВКонтакте (госпаблик)">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4.03 8.57 4.03 8.096c0-.254.102-.49.593-.49h1.744c.44 0 .61.203.78.677.847 2.46 2.273 4.607 2.86 4.607.22 0 .322-.102.322-.66V9.721c-.07-1.186-.695-1.287-.695-1.71 0-.204.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.44.508.356 0 .66-.136 1.321-.796 1.32-1.473 2.256-3.745 2.256-3.745.12-.254.322-.49.762-.49h1.744c.525 0 .643.271.525.643-.22 1.017-2.41 4.168-2.41 4.168-.19.305-.254.44 0 .78.186.254.796.779 1.202 1.253.762.848 1.355 1.557 1.51 2.05.17.49-.085.745-.61.745z"/></svg>
-            </a>
-            <a href="#" aria-label="Телеграм-канал школы">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+const title = 'О школе — СОШ № 29 им. Сепсяковой Т.Ф.';
+const description = 'История, достижения и статус опорной школы ОАО «РЖД» школы № 29 имени Сепсяковой Т.Ф. города Петрозаводска.';
+---
 
-    <div class="header-main">
-      <div class="container">
-        <a class="brand" href="/">
-          <img class="brand-logo" src="/assets/img/emblem.svg" alt="Эмблема школы № 29 имени Сепсяковой Т.Ф." width="62" height="72">
-          <span>
-            <span class="brand-title">МБОУ Петрозаводского ГО «СОШ № 29 им. Сепсяковой Т.Ф.»</span>
-            <span class="brand-sub">Средняя общеобразовательная школа · Петрозаводск</span>
-          </span>
-        </a>
-        <div class="header-actions">
-          <form class="search-form" role="search" action="#" method="get">
-            <label class="visually-hidden" for="site-search">Поиск по сайту</label>
-            <input id="site-search" type="search" name="q" placeholder="Поиск по сайту" autocomplete="off">
-            <button class="search-btn" type="submit" aria-label="Найти">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-            </button>
-          </form>
-          <button class="burger" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Открыть меню">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <nav class="main-nav" id="main-nav" aria-label="Главное меню">
-      <div class="container">
-        <ul class="nav-list">
-          <li class="nav-item"><a class="nav-link" href="/">Главная</a></li>
-          <li class="nav-item">
-            <a class="nav-link is-active" href="/o-shkole/" aria-current="page">О школе</a>
-            <ul class="submenu">
-              <li><a href="/o-shkole/#history">История школы</a></li>
-              <li><a href="/o-shkole/#achievements">Достижения</a></li>
-              <li><a href="/o-shkole/#rzd">Опорная школа ОАО «РЖД»</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/sveden/">Сведения об ОО</a>
-            <ul class="submenu">
-              <li><a href="/sveden/">Все 14 подразделов</a></li>
-              <li><a href="/sveden-teachers/">Педагогический состав</a></li>
-              <li><a href="#">Документы</a></li>
-              <li><a href="#">Платные образовательные услуги</a></li>
-              <li><a href="#">Организация питания</a></li>
-            </ul>
-          </li>
-          <li class="nav-item"><a class="nav-link" href="/news/">Новости</a></li>
-          <li class="nav-item">
-            <button class="nav-toggle" type="button" aria-expanded="false" aria-haspopup="true">Родителям <span class="caret" aria-hidden="true"></span></button>
-            <ul class="submenu">
-              <li><a href="#">Приём в 1 класс</a></li>
-              <li><a href="#">Приём в 10 класс</a></li>
-              <li><a href="#">Государственная итоговая аттестация (ГИА)</a></li>
-              <li><a href="#">Организация питания</a></li>
-              <li><a href="#">Частые вопросы</a></li>
-              <li><a href="#">Школа «Малышок»</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <button class="nav-toggle" type="button" aria-expanded="false" aria-haspopup="true">Ученикам <span class="caret" aria-hidden="true"></span></button>
-            <ul class="submenu">
-              <li><a href="#">Государственная итоговая аттестация (ГИА)</a></li>
-              <li><a href="#">Одарённые дети</a></li>
-              <li><a href="#">Школьный спортивный клуб</a></li>
-              <li><a href="#">Наставничество</a></li>
-              <li><a href="#">Отдых и оздоровление детей</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <button class="nav-toggle" type="button" aria-expanded="false" aria-haspopup="true">Педагогам <span class="caret" aria-hidden="true"></span></button>
-            <ul class="submenu">
-              <li><a href="#">Наставничество</a></li>
-              <li><a href="#">Снижение бюрократической нагрузки</a></li>
-              <li><a href="#">Документы</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/bezopasnost/">Безопасность</a>
-            <ul class="submenu">
-              <li><a href="/bezopasnost/#antiterror">Антитеррористическая защищённость</a></li>
-              <li><a href="/bezopasnost/#road">Дорожная безопасность</a></li>
-              <li><a href="/bezopasnost/#fire">Пожарная безопасность</a></li>
-              <li><a href="/bezopasnost/#info">Информационная безопасность</a></li>
-            </ul>
-          </li>
-          <li class="nav-item"><a class="nav-link" href="/contacts/">Контакты</a></li>
-        </ul>
-      </div>
+<Layout title={title} description={description} active="/o-shkole/">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки" data-od-id="breadcrumbs">
+      <ol>
+        <li><a href="/">Главная</a></li>
+        <li><span aria-current="page">О школе</span></li>
+      </ol>
     </nav>
-  </header>
+  </div>
 
-  <main id="main">
+  <section class="page-hero" data-od-id="page-hero">
     <div class="container">
-      <nav class="breadcrumbs" aria-label="Хлебные крошки" data-od-id="breadcrumbs">
-        <ol>
-          <li><a href="/">Главная</a></li>
-          <li><span aria-current="page">О школе</span></li>
-        </ol>
-      </nav>
-    </div>
-
-    <section class="page-hero" data-od-id="page-hero">
-      <div class="container">
-        <h1>О школе</h1>
-        <p class="lead">Школа № 29 — это почти шестьдесят лет истории, сильные традиции и современное образование. С 2023 года школа носит статус опорной школы ОАО «РЖД».</p>
-      </div>
-    </section>
-
-    <div class="layout container">
-      <aside class="side-nav" aria-label="Разделы страницы" data-od-id="about-sidebar">
-        <span class="side-nav-title">На странице</span>
-        <a href="#history">История школы</a>
-        <a href="#name">Имя школы</a>
-        <a href="#achievements">Достижения</a>
-        <a href="#rzd">Опорная школа ОАО «РЖД»</a>
-        <a href="#management">Руководство</a>
-      </aside>
-
-      <div class="content-block">
-        <section id="history" style="scroll-margin-top:110px;">
-          <h2>История школы</h2>
-          <p>Школа открылась в 1966 году в молодом районе Петрозаводска. За десятилетия через её стены прошли тысячи выпускников: инженеры, врачи, учителя, железнодорожники. Сегодня школа — современное образовательное пространство, где сохраняются лучшие традиции советской и российской школы.</p>
-          <ul class="timeline" style="margin-top:1.25rem;">
-            <li><span class="timeline-year">1966</span><p>Открытие школы № 29 — первые ученики и первые учителя. <!-- Плейсхолдер: уточнить факты по архивным данным --></p></li>
-            <li><span class="timeline-year">1985</span><p>Школа переезжает в нынешнее здание на улице Лыжной — просторные классы, спортзал, библиотека.</p></li>
-            <li><span class="timeline-year">1998</span><p>Школе присвоено имя Таисии Фёдоровны Сепсяковой — учителя, отдавшего школе и карельскому образованию более сорока лет.</p></li>
-            <li><span class="timeline-year">2023</span><p>Школа получает статус опорной школы ОАО «РЖД» и открывает профильные классы транспортной направленности.</p></li>
-            <li><span class="timeline-year">2026</span><p>Сегодня: 33 класса, более 900 учеников, профильное обучение, современная материально-техническая база.</p></li>
-          </ul>
-        </section>
-
-        <section id="name" style="scroll-margin-top:110px; margin-top:2.5rem;">
-          <h2>Имя школы — Таисия Фёдоровна Сепсякова</h2>
-          <div class="callout">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            <div>
-              <p>Таисия Фёдоровна Сепсякова — заслуженный учитель школы Карелии, более сорока лет посвятившая обучению и воспитанию детей. Её имя — символ преданности профессии, любви к ученикам и высокого педагогического мастерства.<!-- Плейсхолдер: биографию уточнить и дополнить по материалам школьного музея --></p>
-            </div>
-          </div>
-        </section>
-
-        <section id="achievements" style="scroll-margin-top:110px; margin-top:2.5rem;">
-          <h2>Достижения</h2>
-          <p>Ученики школы ежегодно становятся призёрами и победителями Всероссийской олимпиады школьников на муниципальном и региональном этапах, показывают высокие результаты на ГИА. Школьный спортивный клуб — многократный призёр городских соревнований.</p>
-          <div class="grid grid-3" style="margin-top:1.25rem;">
-            <div class="card">
-              <div class="card-row"><span class="card-num">1</span><h3>Призёры регионального этапа ВсОШ</h3></div>
-              <p>Русский язык, история, биология, физическая культура — предметы, в которых ученики школы показывают лучшие результаты в Карелии.</p>
-            </div>
-            <div class="card">
-              <div class="card-row"><span class="card-num">2</span><h3>Высокие баллы ГИА</h3></div>
-              <p>Средний балл ЕГЭ по русскому языку и математике стабильно выше республиканских показателей.</p>
-            </div>
-            <div class="card">
-              <div class="card-row"><span class="card-num">3</span><h3>Победители городских спартакиад</h3></div>
-              <p>Баскетбол, лёгкая атлетика, лыжные гонки — спортивный клуб школы — в числе лидеров Петрозаводска.</p>
-            </div>
-          </div>
-        </section>
-
-        <section id="rzd" style="scroll-margin-top:110px; margin-top:2.5rem;">
-          <h2>Опорная школа ОАО «РЖД»</h2>
-          <p>С 2023 года школа № 29 — опорная школа ОАО «РЖД». Это партнёрство открывает ученикам уникальные возможности:</p>
-          <ul>
-            <li>профильные классы транспортной направленности с углублённым изучением математики, физики и информатики;</li>
-            <li>практика на базе Детской железной дороги Петрозаводска и предприятиях Октябрьской железной дороги;</li>
-            <li>целевое обучение в транспортных вузах: РУТ (МИИТ), ПГУПС, филиал ПетрГУ;</li>
-            <li>профориентационные экскурсии, встречи с железнодорожниками и наставниками;</li>
-            <li>шефская помощь в развитии материально-технической базы школы.</li>
-          </ul>
-          <div class="callout">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-            <p>Выпускники профильных классов поступают в транспортные вузы страны — в 2026 году это 11 человек. Подробнее о поступлении — в <a href="/news/">новостях школы</a>.</p>
-          </div>
-        </section>
-
-        <section id="management" style="scroll-margin-top:110px; margin-top:2.5rem;">
-          <h2>Руководство</h2>
-          <div class="grid grid-2">
-            <div class="contact-block">
-              <h3>Директор школы</h3>
-              <ul>
-                <li>
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                  <span><strong>Петрова Наталья Викторовна</strong><br>Приём граждан: среда, 15:00–18:00</span>
-                </li>
-                <li>
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                  <span><a href="tel:+78142780030">+7 (8142) 78-00-30</a></span>
-                </li>
-              </ul>
-            </div>
-            <div class="contact-block">
-              <h3>Заместители директора</h3>
-              <ul>
-                <li>
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                  <span>По учебно-воспитательной работе — <strong>Смирнова Елена Анатольевна</strong></span>
-                </li>
-                <li>
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                  <span>По воспитательной работе — <strong>Кириллова Ольга Викторовна</strong></span>
-                </li>
-                <li>
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                  <span>По административно-хозяйственной работе — <strong>Тарасов Владимир Иванович</strong></span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-      </div>
-    </div>
-  </main>
-
-  <!-- ГОСССЫЛКИ -->
-  <section class="gov-links" data-od-id="gov-links" aria-label="Ссылки на государственные ресурсы">
-    <div class="container">
-      <a class="gov-chip" href="#">Минпросвещения России</a>
-      <a class="gov-chip" href="#">Минобрнауки России</a>
-      <a class="gov-chip" href="#">Госуслуги</a>
-      <a class="gov-chip" href="#">«Решаем вместе»</a>
-      <a class="gov-chip" href="#">bus.gov.ru — оценка качества</a>
-      <a class="gov-chip" href="#">Управление образования Администрации ПГО</a>
+      <h1>О школе</h1>
+      <p class="lead">Школа № 29 — это почти шестьдесят лет истории, сильные традиции и современное образование. С 2023 года школа носит статус опорной школы ОАО «РЖД».</p>
     </div>
   </section>
 
-  <footer class="site-footer" data-od-id="site-footer">
-    <div class="footer-main">
-      <div class="container">
-        <div class="footer-col">
-          <div class="footer-brand">
-            <img src="/assets/img/emblem.svg" alt="" width="48" height="56">
-            <div>
-              <h3>МБОУ Петрозаводского ГО «СОШ № 29 им. Сепсяковой Т.Ф.»</h3>
-              <p>185031, Республика Карелия, г. Петрозаводск, ул. Лыжная, д. 4</p>
-            </div>
-          </div>
-          <ul>
-            <li><a href="tel:+78142780029">+7 (8142) 78-00-29 — приёмная</a></li>
-            <li><a href="mailto:school29@petrozavodsk-edu.ru">school29@petrozavodsk-edu.ru</a></li>
-            <li>Пн–Пт 08:00–19:00, Сб 08:00–15:00</li>
-          </ul>
-          <div class="footer-socials">
-            <a href="#" aria-label="ВКонтакте">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4.03 8.57 4.03 8.096c0-.254.102-.49.593-.49h1.744c.44 0 .61.203.78.677.847 2.46 2.273 4.607 2.86 4.607.22 0 .322-.102.322-.66V9.721c-.07-1.186-.695-1.287-.695-1.71 0-.204.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.44.508.356 0 .66-.136 1.321-.796 1.32-1.473 2.256-3.745 2.256-3.745.12-.254.322-.49.762-.49h1.744c.525 0 .643.271.525.643-.22 1.017-2.41 4.168-2.41 4.168-.19.305-.254.44 0 .78.186.254.796.779 1.202 1.253.762.848 1.355 1.557 1.51 2.05.17.49-.085.745-.61.745z"/></svg>
-            </a>
-            <a href="#" aria-label="Телеграм">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-            </a>
-            <a href="#" aria-label="Одноклассники">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="7" r="4.2"/><path d="M12 12.5c-3 0-5.6 1.6-6.9 4 .4.9 1.3 1.5 2.3 1.6 1.4 1.7 3.7 2.9 4.6 3.4.9-.5 3.2-1.7 4.6-3.4 1-.1 1.9-.7 2.3-1.6-1.3-2.4-3.9-4-6.9-4z"/></svg>
-            </a>
-          </div>
-        </div>
-        <div class="footer-col">
-          <h3>Разделы</h3>
-          <ul>
-            <li><a href="/sveden/">Сведения об образовательной организации</a></li>
-            <li><a href="/news/">Новости</a></li>
-            <li><a href="/o-shkole/">О школе</a></li>
-            <li><a href="/bezopasnost/">Безопасность</a></li>
-            <li><a href="/contacts/">Контакты</a></li>
-            <li><a href="#">Карта сайта</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h3>Документы и политика</h3>
-          <ul>
-            <li><a href="#">Политика обработки персональных данных</a></li>
-            <li><a href="#">Противодействие коррупции</a></li>
-            <li><a href="#">Независимая оценка качества условий осуществления образовательной деятельности</a></li>
-            <li><a href="#">Отчёт о результатах самообследования</a></li>
-            <li><a href="#">Предписания органов надзора</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h3>Приём в школу</h3>
-          <ul>
-            <li><a href="#">Приём в 1 класс</a></li>
-            <li><a href="#">Приём в 10 класс</a></li>
-            <li><a href="#">Государственная итоговая аттестация</a></li>
-            <li><a href="#">Школа «Малышок»</a></li>
-            <li><a href="#">Горячая линия по питанию: +7 (8142) 78-00-33</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-legal">
-      <div class="container">
-        <span>© 2026 МБОУ Петрозаводского ГО «СОШ № 29 им. Сепсяковой Т.Ф.»</span>
-        <span>Официальные страницы в соцсетях являются госпабликами · 6+</span>
-      </div>
-    </div>
-  </footer>
+  <div class="layout container">
+    <aside class="side-nav" aria-label="Разделы страницы" data-od-id="about-sidebar">
+      <span class="side-nav-title">На странице</span>
+      <a href="#history">История школы</a>
+      <a href="#name">Имя школы</a>
+      <a href="#achievements">Достижения</a>
+      <a href="#rzd">Опорная школа ОАО «РЖД»</a>
+      <a href="#management">Руководство</a>
+    </aside>
 
-  <script src="/assets/js/main.js" defer></script>
-</body>
-</html>
+    <div class="content-block">
+      <section id="history" style="scroll-margin-top:110px;">
+        <h2>История школы</h2>
+        <p>Школа открылась в 1966 году в молодом районе Петрозаводска. За десятилетия через её стены прошли тысячи выпускников: инженеры, врачи, учителя, железнодорожники. Сегодня школа — современное образовательное пространство, где сохраняются лучшие традиции советской и российской школы.</p>
+        <ul class="timeline" style="margin-top:1.25rem;">
+          <li><span class="timeline-year">1966</span><p>Открытие школы № 29 — первые ученики и первые учителя. <!-- Плейсхолдер: уточнить факты по архивным данным --></p></li>
+          <li><span class="timeline-year">1985</span><p>Школа переезжает в нынешнее здание на улице Лыжной — просторные классы, спортзал, библиотека.</p></li>
+          <li><span class="timeline-year">1998</span><p>Школе присвоено имя Таисии Фёдоровны Сепсяковой — учителя, отдавшего школе и карельскому образованию более сорока лет.</p></li>
+          <li><span class="timeline-year">2023</span><p>Школа получает статус опорной школы ОАО «РЖД» и открывает профильные классы транспортной направленности.</p></li>
+          <li><span class="timeline-year">2026</span><p>Сегодня: 33 класса, более 900 учеников, профильное обучение, современная материально-техническая база.</p></li>
+        </ul>
+      </section>
+
+      <section id="name" style="scroll-margin-top:110px; margin-top:2.5rem;">
+        <h2>Имя школы — Таисия Фёдоровна Сепсякова</h2>
+        <div class="callout">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <div>
+            <p>Таисия Фёдоровна Сепсякова — заслуженный учитель школы Карелии, более сорока лет посвятившая обучению и воспитанию детей. Её имя — символ преданности профессии, любви к ученикам и высокого педагогического мастерства.<!-- Плейсхолдер: биографию уточнить и дополнить по материалам школьного музея --></p>
+          </div>
+        </div>
+      </section>
+
+      <section id="achievements" style="scroll-margin-top:110px; margin-top:2.5rem;">
+        <h2>Достижения</h2>
+        <p>Ученики школы ежегодно становятся призёрами и победителями Всероссийской олимпиады школьников на муниципальном и региональном этапах, показывают высокие результаты на ГИА. Школьный спортивный клуб — многократный призёр городских соревнований.</p>
+        <div class="grid grid-3" style="margin-top:1.25rem;">
+          <div class="card">
+            <div class="card-row"><span class="card-num">1</span><h3>Призёры регионального этапа ВсОШ</h3></div>
+            <p>Русский язык, история, биология, физическая культура — предметы, в которых ученики школы показывают лучшие результаты в Карелии.</p>
+          </div>
+          <div class="card">
+            <div class="card-row"><span class="card-num">2</span><h3>Высокие баллы ГИА</h3></div>
+            <p>Средний балл ЕГЭ по русскому языку и математике стабильно выше республиканских показателей.</p>
+          </div>
+          <div class="card">
+            <div class="card-row"><span class="card-num">3</span><h3>Победители городских спартакиад</h3></div>
+            <p>Баскетбол, лёгкая атлетика, лыжные гонки — спортивный клуб школы — в числе лидеров Петрозаводска.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="rzd" style="scroll-margin-top:110px; margin-top:2.5rem;">
+        <h2>Опорная школа ОАО «РЖД»</h2>
+        <p>С 2023 года школа № 29 — опорная школа ОАО «РЖД». Это партнёрство открывает ученикам уникальные возможности:</p>
+        <ul>
+          <li>профильные классы транспортной направленности с углублённым изучением математики, физики и информатики;</li>
+          <li>практика на базе Детской железной дороги Петрозаводска и предприятиях Октябрьской железной дороги;</li>
+          <li>целевое обучение в транспортных вузах: РУТ (МИИТ), ПГУПС, филиал ПетрГУ;</li>
+          <li>профориентационные экскурсии, встречи с железнодорожниками и наставниками;</li>
+          <li>шефская помощь в развитии материально-технической базы школы.</li>
+        </ul>
+        <div class="callout">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          <p>Выпускники профильных классов поступают в транспортные вузы страны — в 2026 году это 11 человек. Подробнее о поступлении — в <a href="/news/">новостях школы</a>.</p>
+        </div>
+      </section>
+
+      <section id="management" style="scroll-margin-top:110px; margin-top:2.5rem;">
+        <h2>Руководство</h2>
+        <div class="grid grid-2">
+          <div class="contact-block">
+            <h3>Директор школы</h3>
+            <ul>
+              <li>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <span><strong>Петрова Наталья Викторовна</strong><br>Приём граждан: среда, 15:00–18:00</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <span><a href="tel:+78142780030">+7 (8142) 78-00-30</a></span>
+              </li>
+            </ul>
+          </div>
+          <div class="contact-block">
+            <h3>Заместители директора</h3>
+            <ul>
+              <li>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <span>По учебно-воспитательной работе — <strong>Смирнова Елена Анатольевна</strong></span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <span>По воспитательной работе — <strong>Кириллова Ольга Викторовна</strong></span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <span>По административно-хозяйственной работе — <strong>Тарасов Владимир Иванович</strong></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</Layout>

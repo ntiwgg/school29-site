@@ -1,0 +1,26 @@
+---
+/**
+ * Карточка подраздела «Сведений об образовательной организации»
+ * (страница /sveden/, 14 однотипных карточек).
+ */
+interface Props {
+  /** Идентификатор для дизайн-системы OpenDesign, например sveden-1 */
+  odId: string;
+  /** Номер подраздела, например 01 */
+  num: string;
+  /** Название подраздела */
+  title: string;
+  /** Краткое описание */
+  description: string;
+  /** Ссылка на подраздел */
+  href: string;
+}
+
+const { odId, num, title, description, href } = Astro.props;
+---
+
+<article class="card" data-od-id={odId}>
+  <div class="card-row"><span class="card-num">{num}</span><h3>{title}</h3></div>
+  <p>{description}</p>
+  <a class="card-arrow" href={href}>Подробнее →</a>
+</article>

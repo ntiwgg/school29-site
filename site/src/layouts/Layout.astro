@@ -1,0 +1,59 @@
+---
+/**
+ * Общий каркас страницы: <head> (title, description, favicon, стили),
+ * шапка, контент страницы в <main>, полоса госссылок и футер.
+ *
+ * Шрифт Golos Text подключён локально через @fontsource (self-host):
+ * веса 400–900, используемые в дизайне (Google Fonts убран).
+ */
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import GovLinks from '../components/GovLinks.astro';
+
+import '@fontsource/golos-text/400.css';
+import '@fontsource/golos-text/500.css';
+import '@fontsource/golos-text/600.css';
+import '@fontsource/golos-text/700.css';
+import '@fontsource/golos-text/800.css';
+import '@fontsource/golos-text/900.css';
+
+interface Props {
+  /** Заголовок страницы <title> */
+  title: string;
+  /** Мета-описание страницы */
+  description?: string;
+  /** Путь активного раздела меню (для подсветки), например '/' */
+  active: string;
+  /** Показывать иконки в полосе госссылок (главная страница) */
+  withGovLinkIcons?: boolean;
+}
+
+const { title, description, active, withGovLinkIcons = false } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{title}</title>
+  {description && <meta name="description" content={description} />}
+  <link rel="icon" type="image/svg+xml" href="/assets/img/emblem.svg">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <Header active={active} />
+
+  <main id="main">
+    <slot />
+  </main>
+
+  <GovLinks withIcons={withGovLinkIcons} />
+
+  <Footer />
+
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>

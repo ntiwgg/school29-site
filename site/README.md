@@ -1,43 +1,42 @@
-# Astro Starter Kit: Minimal
+# Сайт школы № 29 — Astro-проект
+
+Официальный сайт МБОУ Петрозаводского ГО «СОШ № 29 им. Сепсяковой Т.Ф.» (г. Петрозаводск). Статический сайт на Astro; дизайн перенесён из макета OpenDesign, разметка страниц сохранена 1:1.
+
+## Запуск
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
+npm run dev       # локальный dev-сервер на localhost:4321
+npm run build     # сборка в ./dist
+npm run preview   # просмотр собранного сайта
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## Структура
 
 ```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+src/
+├── layouts/
+│   └── Layout.astro      # общий каркас: head, шапка, <main>, футер, подключение шрифта
+├── components/
+│   ├── Header.astro      # шапка с меню (пропс active — подсветка раздела)
+│   ├── Footer.astro      # футер
+│   ├── GovLinks.astro    # полоса госссылок (пропс withIcons — иконки на главной)
+│   ├── NewsCard.astro    # карточка новости
+│   └── SvedenCard.astro  # карточка подраздела «Сведений об ОО»
+└── pages/
+    ├── index.astro
+    ├── o-shkole.astro
+    ├── sveden.astro
+    ├── sveden-teachers.astro
+    ├── news.astro
+    ├── bezopasnost.astro
+    └── contacts.astro
+public/
+├── assets/css/styles.css  # все стили сайта
+├── assets/js/main.js      # скрипты (меню, «слабовидящие»)
+└── assets/img/emblem.svg  # эмблема школы
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Шрифт
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Шрифт **Golos Text** подключён локально через `@fontsource/golos-text` (self-host, веса 400–900) — импорты в `src/layouts/Layout.astro`. Google Fonts не используется; woff2-файлы попадают в `dist/_astro/` при сборке.
