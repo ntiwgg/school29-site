@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 124 144" role="img" aria-labelledby="emblem-title emblem-desc">
+  <title id="emblem-title">Эмблема школы № 29 имени Сепсяковой Т.Ф.</title>
+  <desc id="emblem-desc">Щит с раскрытой книгой, елью и звездой — символ знаний и Карелии</desc>
+  <!-- щит -->
+  <path d="M62 6 L116 22 V82 C116 114 92 131 62 138 C32 131 8 114 8 82 V22 Z" fill="#0A6B63"/>
+  <path d="M62 12 L110 26 V82 C110 110 88 126 62 132 C36 126 14 110 14 82 V26 Z" fill="#0E7A70" stroke="#FFFFFF" stroke-width="2"/>
+  <!-- звезда -->
+  <path d="M62 24 L64.5 30.5 L71.5 31 L66.2 35.7 L67.5 42.5 L62 39.2 L56.5 42.5 L57.8 35.7 L52.5 31 L59.5 30.5 Z" fill="#E4C580"/>
+  <!-- раскрытая книга -->
+  <path d="M30 58 C42 52 54 54 62 60 C70 54 82 52 94 58 L94 102 C82 96 70 98 62 104 C54 98 42 96 30 102 Z" fill="#FFFFFF"/>
+  <path d="M62 60 V104" stroke="#0A6B63" stroke-width="2.5"/>
+  <path d="M34 64 C44 60 54 61 60 65 M34 76 C44 72 54 73 60 77 M34 88 C44 84 54 85 60 89" stroke="#9BC9C2" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M90 64 C80 60 70 61 64 65 M90 76 C80 72 70 73 64 77 M90 88 C80 84 70 85 64 89" stroke="#9BC9C2" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- ель -->
+  <path d="M62 58 L74 76 L68 76 L80 92 L44 92 L56 76 L50 76 Z" fill="#0E7A70" opacity="0" stroke="#E4F0ED" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M62 60 L72.5 75 L67.5 75 L77 89 L47 89 L56.5 75 L51.5 75 Z" fill="#E4F0ED"/>
+</svg>
