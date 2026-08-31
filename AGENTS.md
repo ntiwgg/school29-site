@@ -19,6 +19,7 @@
 - docs/tech-debt.md — долги проекта
 - docs/graveyard.md — похороненные идеи
 - docs/adr/ — формальные записи решений (ADR)
+- docs/design-brief.md — бриф для дизайна (OpenDesign): стиль, палитра, шрифт, страницы
 - docs/research/ — исследования и материалы
 
 ## Запреты (жёстко)

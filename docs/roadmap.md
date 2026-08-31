@@ -1,4 +1,4 @@
-# Roadmap {{PROJECT_NAME}}
+# Roadmap Сайт школы № 29
 
 > План развития: от первой полезной версии до полной картины. См. также: docs/plan.md (детали), docs/context.md (цель), docs/anti-features.md (запреты).
 
