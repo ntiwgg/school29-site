@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { url } from '../lib/paths';
+
+/**
+ * Страница поиска по сайту. Индекс строит Pagefind при сборке
+ * (скрипт build: `pagefind --site dist`), ресурсы UI лежат в
+ * dist/pagefind/ и подключаются ниже локально.
+ */
+const title = 'Поиск — СОШ № 29 им. Сепсяковой Т.Ф.';
+const description = 'Поиск по сайту средней общеобразовательной школы № 29 имени Сепсяковой Т.Ф. города Петрозаводска.';
+---
+
+<Layout title={title} description={description} active="">
+
+  <link rel="stylesheet" href={url('/pagefind/pagefind-ui.css')} />
+  <!-- is:inline обязателен: без него Astro «поднимает» <script src> как модуль
+       и молча выкидывает тег при сборке (файл создаётся только после
+       `pagefind --site dist`, то есть после шага astro build). -->
+  <script is:inline src={url('/pagefind/pagefind-ui.js')}></script>
+
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки" data-od-id="breadcrumbs">
+      <ol>
+        <li><a href={url('/')}>Главная</a></li>
+        <li><span aria-current="page">Поиск</span></li>
+      </ol>
+    </nav>
+  </div>
+
+  <section class="page-hero" data-od-id="page-hero">
+    <div class="container">
+      <h1>Поиск по сайту</h1>
+    </div>
+  </section>
+
+  <section class="section" data-od-id="search-results">
+    <div class="container">
+      <div id="search"></div>
+    </div>
+  </section>
+
+  <style>
+    #search {
+      max-width: 880px;
+      margin: 0 auto;
+    }
+  </style>
+
+  <script>
+    // Глобальный класс из pagefind-ui.js (подключается выше как is:inline-скрипт).
+    interface PagefindUIOptions {
+      element: string;
+      showSubResults?: boolean;
+      showImages?: boolean;
+      bundlePath?: string;
+      translations?: Record<string, string>;
+    }
+
+    interface PagefindUIInstance {
+      triggerSearch?: (term: string) => void;
+    }
+
+    declare const PagefindUI: new (options: PagefindUIOptions) => PagefindUIInstance;
+
+    const query = new URLSearchParams(window.location.search).get('q');
+
+    const searchUi = new PagefindUI({
+      element: '#search',
+      showSubResults: true,
+      showImages: false,
+      // В pagefind-ui 1.5.2 опция называется bundlePath (basePath отсутствует);
+      // путь склеивается строкой `${bundlePath}pagefind.js`, поэтому
+      // завершающий слеш обязателен.
+      bundlePath: '/school29-site/pagefind/',
+      translations: {
+        placeholder: 'Поиск по сайту',
+      },
+    });
+
+    // Если открыт /search/?q=… — сразу выполняем поиск.
+    if (query) {
+      if (typeof searchUi.triggerSearch === 'function') {
+        searchUi.triggerSearch(query);
+      } else {
+        // Фолбэк на случай, если triggerSearch вдруг исчезнет из UI:
+        // у Pagefind поле поиска имеет type="text", а не "search".
+        const input = document.querySelector<HTMLInputElement>('#search input');
+        if (input) {
+          input.value = query;
+          input.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+      }
+    }
+  </script>
+</Layout>
