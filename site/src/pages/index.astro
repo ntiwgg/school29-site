@@ -17,6 +17,9 @@ const announcements = (await getCollection('announcements'))
   .filter((entry) => isPublished(entry.data.date))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
+/** Число педагогических работников — считаем по коллекции teachers, цифру не выдумываем (ERR-04) */
+const teachersCount = (await getCollection('teachers')).length;
+
 const title = 'МБОУ Петрозаводского ГО «СОШ № 29 им. Сепсяковой Т.Ф.» — главная';
 const description = 'Официальный сайт средней общеобразовательной школы № 29 имени Сепсяковой Т.Ф. города Петрозаводска: приём в 1 класс, новости, сведения об образовательной организации.';
 ---
@@ -38,9 +41,7 @@ const description = 'Официальный сайт средней общеоб
         </div>
         <div class="hero-facts">
           <div class="hero-fact"><b>1966</b><span>год основания</span></div>
-          <div class="hero-fact"><b>900+</b><span>учеников, 1–11 классы</span></div>
-          <div class="hero-fact"><b>57</b><span>педагогических работников</span></div>
-          <!-- Плейсхолдер: факты заменить реальными данными школы -->
+          <div class="hero-fact"><b>{teachersCount}</b><span>педагогических работников</span></div>
         </div>
       </div>
       <div class="hero-visual">
