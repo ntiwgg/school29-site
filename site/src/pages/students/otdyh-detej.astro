@@ -1,0 +1,40 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { url } from '../../lib/paths';
+
+const title = 'Отдых и оздоровление детей — Ученикам — СОШ № 29 им. Сепсяковой Т.Ф.';
+const description = 'Информация об организации отдыха детей и их оздоровления.';
+---
+
+<Layout title={title} description={description} active="/students/">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки" data-od-id="breadcrumbs">
+      <ol>
+        <li><a href={url('/')}>Главная</a></li>
+        <li><a href={url('/students/')}>Ученикам</a></li>
+        <li><span aria-current="page">Отдых и оздоровление детей</span></li>
+      </ol>
+    </nav>
+  </div>
+
+  <section class="page-hero" data-od-id="page-hero">
+    <div class="container">
+      <h1>Отдых и оздоровление детей</h1>
+      <p class="lead">Организация отдыха детей и их оздоровления.</p>
+    </div>
+  </section>
+
+  <div class="layout container">
+    <div class="content-block">
+      <section id="about" style="scroll-margin-top:110px;">
+        <h2>Об организации отдыха детей</h2>
+        <p>На прежнем сайте школы раздел «Организация отдыха детей и их оздоровления» не был наполнен: подразделы «Основные сведения», «Документы», «Руководство», «Педагогический и вожатый состав», «Контакты», «Деятельность», «Услуги» и «Доступная среда» не содержали информации.</p>
+      </section>
+
+      <section id="news" style="scroll-margin-top:110px; margin-top:2.5rem;">
+        <h2>Где искать информацию</h2>
+        <p>Актуальные сведения о жизни школы, в том числе о мероприятиях и практиках обучающихся в летний период, публикуются в разделе «<a href={url('/news/')}>Новости</a>». Информация об организации отдыха детей и их оздоровления будет размещаться в этом разделе по мере появления.</p>
+      </section>
+    </div>
+  </div>
+</Layout>

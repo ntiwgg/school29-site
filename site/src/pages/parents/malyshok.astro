@@ -1,0 +1,49 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { url } from '../../lib/paths';
+
+const title = 'Школа «Малышок» — Родителям — СОШ № 29 им. Сепсяковой Т.Ф.';
+const description = 'Занятия по подготовке к школе для будущих первоклассников: начало работы, время занятий, что необходимо принести ребёнку.';
+---
+
+<Layout title={title} description={description} active="/parents/">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки" data-od-id="breadcrumbs">
+      <ol>
+        <li><a href={url('/')}>Главная</a></li>
+        <li><a href={url('/parents/')}>Родителям</a></li>
+        <li><span aria-current="page">Школа «Малышок»</span></li>
+      </ol>
+    </nav>
+  </div>
+
+  <section class="page-hero" data-od-id="page-hero">
+    <div class="container">
+      <h1>Школа «Малышок»</h1>
+      <p class="lead">Занятия по подготовке к школе для будущих первоклассников.</p>
+    </div>
+  </section>
+
+  <div class="layout container">
+    <div class="content-block">
+      <section id="start" style="scroll-margin-top:110px;">
+        <h2>Начало занятий</h2>
+        <p>Уважаемые родители будущих первоклассников!</p>
+        <p>«Школа Малышок» начинает свою работу с 12 октября 2024 года.</p>
+        <p>Начало занятий в 10:00, каб. № 10.</p>
+      </section>
+
+      <section id="things" style="scroll-margin-top:110px; margin-top:2.5rem;">
+        <h2>Что необходимо принести</h2>
+        <p>Для занятий ребятам необходимо принести:</p>
+        <ol>
+          <li>вторую обувь;</li>
+          <li>тетрадь в клетку;</li>
+          <li>пенал (ручка, простой карандаш, линейка, ножницы, клей-карандаш, цветные карандаши);</li>
+          <li>цветную бумагу;</li>
+          <li>цветной картон.</li>
+        </ol>
+      </section>
+    </div>
+  </div>
+</Layout>

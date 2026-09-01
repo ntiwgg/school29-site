@@ -1,0 +1,58 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { url } from '../../lib/paths';
+
+const title = 'Одарённые дети — Ученикам — СОШ № 29 им. Сепсяковой Т.Ф.';
+const description = 'Всероссийская олимпиада школьников, конкурс «Эврикоша», достижения обучающихся школы.';
+---
+
+<Layout title={title} description={description} active="/students/">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки" data-od-id="breadcrumbs">
+      <ol>
+        <li><a href={url('/')}>Главная</a></li>
+        <li><a href={url('/students/')}>Ученикам</a></li>
+        <li><span aria-current="page">Одарённые дети</span></li>
+      </ol>
+    </nav>
+  </div>
+
+  <section class="page-hero" data-od-id="page-hero">
+    <div class="container">
+      <h1>Одарённые дети</h1>
+      <p class="lead">Олимпиады, конкурсы и достижения обучающихся школы № 29.</p>
+    </div>
+  </section>
+
+  <div class="layout container">
+    <aside class="side-nav" aria-label="Разделы страницы" data-od-id="odarennye-sidebar">
+      <span class="side-nav-title">На странице</span>
+      <a href="#vosh">Всероссийская олимпиада школьников</a>
+      <a href="#evrikosha">Конкурс «Эврикоша»</a>
+    </aside>
+
+    <div class="content-block">
+      <section id="vosh" style="scroll-margin-top:110px;">
+        <h2>Всероссийская олимпиада школьников</h2>
+        <p>Школа ежегодно проводит школьный этап всероссийской олимпиады школьников (ВсОШ). В 2025–2026 учебном году школьный этап проводится на платформе «Сириус.Курсы»; для участия оформляются заявление родителя и согласие на обработку персональных данных.</p>
+        <p>По итогам школьного этапа публикуется рейтинг победителей и призёров (рейтинг за 2025 год размещался на сайте школы).</p>
+      </section>
+
+      <section id="evrikosha" style="scroll-margin-top:110px; margin-top:2.5rem;">
+        <h2>Конкурс «Эврикоша»</h2>
+        <p>Работы обучающихся школы № 29, представленные на конкурс «Эврикоша» в 2019–2020 учебном году:</p>
+        <ul>
+          <li><strong>3 «В» класс, Зайцев Ростислав</strong> — «Потерянное детство» (руководитель Учакина М.А.);</li>
+          <li><strong>4 «А» класс, Парфенова Софья</strong> — «Выведение цыплят в домашних условиях» (руководитель Степанова Л.В.);</li>
+          <li><strong>4 «Б» класс, Хайми Алексей, Полякова Софья</strong> — «Изготовление духов в домашних условиях» (руководитель Шкред Р.А.).</li>
+        </ul>
+        <div class="callout">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+          <div>
+            <p>На прежнем сайте подразделы «Конкурсы, викторины, олимпиады», «Достижения» и «Спортивные достижения» были наполнены в основном прикреплёнными файлами и новостями 2021 года, которые при переносе сайта недоступны.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</Layout>

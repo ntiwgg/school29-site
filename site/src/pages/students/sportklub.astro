@@ -1,0 +1,52 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { url } from '../../lib/paths';
+
+const title = 'Школьный спортивный клуб — Ученикам — СОШ № 29 им. Сепсяковой Т.Ф.';
+const description = 'Школьный спортивный клуб «Факел»: положение о клубе, планы спортивно-массовых мероприятий, расписание спортивных секций.';
+---
+
+<Layout title={title} description={description} active="/students/">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки" data-od-id="breadcrumbs">
+      <ol>
+        <li><a href={url('/')}>Главная</a></li>
+        <li><a href={url('/students/')}>Ученикам</a></li>
+        <li><span aria-current="page">Школьный спортивный клуб</span></li>
+      </ol>
+    </nav>
+  </div>
+
+  <section class="page-hero" data-od-id="page-hero">
+    <div class="container">
+      <h1>Школьный спортивный клуб</h1>
+      <p class="lead">Школьный спортивный клуб «Факел» — спортивно-массовая работа школы: секции, соревнования, планы мероприятий.</p>
+    </div>
+  </section>
+
+  <div class="layout container">
+    <div class="content-block">
+      <section id="about" style="scroll-margin-top:110px;">
+        <h2>О клубе</h2>
+        <p>В школе действует школьный спортивный клуб «Факел» (приказ о создании школьного спортивного клуба от 1 сентября 2022 г. № 172; руководитель клуба назначен приказом от 01.09.2025 г. № 107 о/д).</p>
+      </section>
+
+      <section id="docs" style="scroll-margin-top:110px; margin-top:2.5rem;">
+        <h2>Документы и планы работы</h2>
+        <ul>
+          <li>Положение о школьном спортивном клубе;</li>
+          <li>календарно-тематический план спортивно-массовых мероприятий на 2025–2026 учебный год;</li>
+          <li>календарный план спортивно-массовых мероприятий в школе;</li>
+          <li>план работы на 2023–2024 учебный год;</li>
+          <li>расписание спортивных секций ШСК.</li>
+        </ul>
+        <div class="callout">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+          <div>
+            <p>Файлы документов клуба (PDF, JPG) на прежнем сайте недоступны при переносе, поэтому они приведены списком. Расписание секций уточняйте в школе.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</Layout>

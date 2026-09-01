@@ -1,0 +1,43 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { url } from '../../lib/paths';
+
+const title = 'Часто задаваемые вопросы — Родителям — СОШ № 29 им. Сепсяковой Т.Ф.';
+const description = 'Вопросы и ответы для родителей: как связаться со школой, где получить информацию о приёме, питании и обучении.';
+---
+
+<Layout title={title} description={description} active="/parents/">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки" data-od-id="breadcrumbs">
+      <ol>
+        <li><a href={url('/')}>Главная</a></li>
+        <li><a href={url('/parents/')}>Родителям</a></li>
+        <li><span aria-current="page">Часто задаваемые вопросы</span></li>
+      </ol>
+    </nav>
+  </div>
+
+  <section class="page-hero" data-od-id="page-hero">
+    <div class="container">
+      <h1>Часто задаваемые вопросы</h1>
+      <p class="lead">Ответы на вопросы родителей о школе, приёме и обучении.</p>
+    </div>
+  </section>
+
+  <div class="layout container">
+    <div class="content-block">
+      <p>Раздел вопросов и ответов на прежнем сайте школы не был наполнен, поэтому перенести готовые ответы не получилось. Задать вопрос или получить консультацию можно:</p>
+      <ul>
+        <li>по телефону школы: <a href="tel:+78142780029">+7 (8142) 78-00-29</a> (пн–пт 08:00–19:00);</li>
+        <li>по электронной почте: <a href="mailto:school29@petrozavodsk-edu.ru">school29@petrozavodsk-edu.ru</a>;</li>
+        <li>через раздел «<a href={url('/contacts/')}>Контакты</a>».</li>
+      </ul>
+      <div class="callout">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+        <div>
+          <p>Большинство вопросов о приёме в 1 и 10 класс, питании и документах закрывается разделами «<a href={url('/parents/')}>Родителям</a>» и «<a href={url('/sveden/')}>Сведения об образовательной организации</a>».</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

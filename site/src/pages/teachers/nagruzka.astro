@@ -1,0 +1,58 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { url } from '../../lib/paths';
+
+const title = 'Снижение бюрократической нагрузки — Педагогам — СОШ № 29 им. Сепсяковой Т.Ф.';
+const description = 'Федеральные и республиканские документы о снижении документационной нагрузки на педагогов, «горячая линия».';
+---
+
+<Layout title={title} description={description} active="/teachers/">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки" data-od-id="breadcrumbs">
+      <ol>
+        <li><a href={url('/')}>Главная</a></li>
+        <li><a href={url('/teachers/')}>Педагогам</a></li>
+        <li><span aria-current="page">Снижение бюрократической нагрузки</span></li>
+      </ol>
+    </nav>
+  </div>
+
+  <section class="page-hero" data-od-id="page-hero">
+    <div class="container">
+      <h1>Снижение бюрократической нагрузки</h1>
+      <p class="lead">Президент России Владимир Владимирович Путин подписал закон, который снимает излишнюю бюрократическую нагрузку с учителей. Соответствующий документ <a href="http://publication.pravo.gov.ru/Document/View/0001202207140075" rel="noopener" target="_blank">опубликован</a> на официальном портале правовой информации.</p>
+    </div>
+  </section>
+
+  <div class="layout container">
+    <aside class="side-nav" aria-label="Разделы страницы" data-od-id="nagruzka-sidebar">
+      <span class="side-nav-title">На странице</span>
+      <a href="#hotline">«Горячая линия»</a>
+      <a href="#orders">Приказы и перечни документации</a>
+    </aside>
+
+    <div class="content-block">
+      <section id="hotline" style="scroll-margin-top:110px;">
+        <h2>В Карелии работает «горячая линия» по документационной нагрузке на педагогов</h2>
+        <p>Подробная информация: <a href="https://minedu.gov.karelia.ru/about/12859/?clear_cache=Y" rel="noopener" target="_blank">minedu.gov.karelia.ru</a></p>
+        <p>Обращения о случаях излишней документационной нагрузки на учителей принимает Рособрнадзор по адресу: <a href="mailto:stop_nagruzka@obrnadzor.gov.ru">stop_nagruzka@obrnadzor.gov.ru</a>.</p>
+      </section>
+
+      <section id="orders" style="scroll-margin-top:110px; margin-top:2.5rem;">
+        <h2>Приказы и перечни документации</h2>
+        <ul>
+          <li>Приказ Минпросвещения России от 21.07.2022 № 582 «Об утверждении перечня документации, подготовка которой осуществляется педагогическими работниками при реализации основных образовательных программ»;</li>
+          <li>Приказ Министерства образования и спорта Республики Карелия от 24.07.2023 № 887;</li>
+          <li>Приказ Министерства образования и спорта Республики Карелия от 01.08.2023 № 922;</li>
+          <li>Приказ Министерства образования и спорта Республики Карелия от 31.08.2023 № 1029.</li>
+        </ul>
+        <div class="callout">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+          <div>
+            <p>Тексты приказов в виде файлов на прежнем сайте недоступны при переносе; официальные документы публикуются на порталах <a href="http://publication.pravo.gov.ru" rel="noopener" target="_blank">publication.pravo.gov.ru</a> и <a href="https://minedu.gov.karelia.ru" rel="noopener" target="_blank">minedu.gov.karelia.ru</a>.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</Layout>

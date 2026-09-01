@@ -1,0 +1,67 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { url } from '../../lib/paths';
+
+const title = 'Приём в 10 класс — Родителям — СОШ № 29 им. Сепсяковой Т.Ф.';
+const description = 'Приём в 10 класс на 2026–2027 учебный год: универсальный профиль, сроки подачи заявлений через ЕПГУ, документы для приёма, вакантные места.';
+---
+
+<Layout title={title} description={description} active="/parents/">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки" data-od-id="breadcrumbs">
+      <ol>
+        <li><a href={url('/')}>Главная</a></li>
+        <li><a href={url('/parents/')}>Родителям</a></li>
+        <li><span aria-current="page">Приём в 10 класс</span></li>
+      </ol>
+    </nav>
+  </div>
+
+  <section class="page-hero" data-od-id="page-hero">
+    <div class="container">
+      <h1>Приём в 10 класс</h1>
+      <p class="lead">В 2026 году в школе планируется открыть один 10 класс универсального профиля с общим количеством обучающихся 25 человек.</p>
+    </div>
+  </section>
+
+  <div class="layout container">
+    <aside class="side-nav" aria-label="Разделы страницы" data-od-id="priem-10-sidebar">
+      <span class="side-nav-title">На странице</span>
+      <a href="#profile">Профиль и места</a>
+      <a href="#apply">Порядок и сроки подачи заявлений</a>
+      <a href="#docs">Документы к заявлению</a>
+    </aside>
+
+    <div class="content-block">
+      <section id="profile" style="scroll-margin-top:110px;">
+        <h2>Профиль и вакантные места</h2>
+        <p>В 2026 году в МОУ «Средняя школа № 29» планируется открыть один 10 класс универсального профиля (с углублённым изучением математики и обществознания), с общим количеством обучающихся 25 человек.</p>
+        <div class="callout">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+          <div>
+            <p><strong>Вакантные места в 10 класс на 2026–2027 учебный год:</strong> 10 класс (универсальный профиль) — 19 мест.</p>
+          </div>
+        </div>
+        <p>Приказ от 06.07.2026 № 78 о/д «О приёме на обучение по ООП СОО».</p>
+      </section>
+
+      <section id="apply" style="scroll-margin-top:110px; margin-top:2.5rem;">
+        <h2>Порядок и сроки подачи заявлений</h2>
+        <p>Приём заявлений осуществляется с 9:00 26 июня 2026 года с использованием Единого портала государственных услуг Российской Федерации (ЕПГУ) по ссылке <a href="https://www.gosuslugi.ru/600470/1/form" rel="noopener" target="_blank">https://www.gosuslugi.ru/600470/1/form</a>.</p>
+        <p>При этом обязательным является предоставление всех необходимых документов (см. ниже) в канцелярию школы.</p>
+        <p>Лично заявление можно подать 1 июля 2026 г. с 12:00 до 15:00 по адресу: ул. Дзержинского, д. 38.</p>
+      </section>
+
+      <section id="docs" style="scroll-margin-top:110px; margin-top:2.5rem;">
+        <h2>Документы к заявлению</h2>
+        <ul>
+          <li>аттестат об основном общем образовании;</li>
+          <li>копия паспорта заявителя;</li>
+          <li>копия паспорта поступающего;</li>
+          <li>копия свидетельства о регистрации по месту проживания (пребывания) или справка о регистрации по месту проживания (пребывания);</li>
+          <li>справка с результатами экзаменов за 9 класс.</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</Layout>

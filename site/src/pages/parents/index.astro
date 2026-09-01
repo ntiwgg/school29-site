@@ -1,0 +1,83 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SvedenCard from '../../components/SvedenCard.astro';
+import { url } from '../../lib/paths';
+
+const title = 'Родителям — СОШ № 29 им. Сепсяковой Т.Ф.';
+const description = 'Информация для родителей (законных представителей): приём в 1 и 10 класс, государственная итоговая аттестация, питание, частые вопросы, школа «Малышок».';
+
+const sections = [
+  {
+    num: '01',
+    title: 'Приём в 1 класс',
+    description: 'Количество первых классов, способы подачи заявления, перечень документов, график приёма и льготные категории граждан.',
+    href: '/parents/priem-1-klass/',
+  },
+  {
+    num: '02',
+    title: 'Приём в 10 класс',
+    description: 'Профиль десятого класса, порядок и сроки подачи заявлений, документы для приёма, вакантные места.',
+    href: '/parents/priem-10-klass/',
+  },
+  {
+    num: '03',
+    title: 'Государственная итоговая аттестация (ГИА)',
+    description: 'ГИА-9 и ГИА-11: допуск, регистрация, итоговое собеседование и итоговое сочинение, полезные ссылки.',
+    href: '/gia/',
+  },
+  {
+    num: '04',
+    title: 'Организация питания',
+    description: 'Меню, режим питания, условия для обучающихся с ОВЗ, контакты ответственных, горячая линия по вопросам питания.',
+    href: '/sveden/organizaciya-pitaniya/',
+  },
+  {
+    num: '05',
+    title: 'Часто задаваемые вопросы',
+    description: 'Вопросы и ответы о школе, приёме и обучении; как связаться со школой.',
+    href: '/parents/faq/',
+  },
+  {
+    num: '06',
+    title: 'Школа «Малышок»',
+    description: 'Занятия по подготовке к школе для будущих первоклассников: начало работы, время занятий, что необходимо принести.',
+    href: '/parents/malyshok/',
+  },
+];
+---
+
+<Layout title={title} description={description} active="/parents/">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки" data-od-id="breadcrumbs">
+      <ol>
+        <li><a href={url('/')}>Главная</a></li>
+        <li><span aria-current="page">Родителям</span></li>
+      </ol>
+    </nav>
+  </div>
+
+  <section class="page-hero" data-od-id="page-hero">
+    <div class="container">
+      <h1>Родителям</h1>
+      <p class="lead">Раздел для родителей (законных представителей) обучающихся: приём в школу, государственная итоговая аттестация, организация питания, ответы на частые вопросы.</p>
+    </div>
+  </section>
+
+  <section class="section" data-od-id="parents-sections">
+    <div class="container">
+      <div class="grid grid-2">
+        {
+          sections.map((section, index) => (
+            <SvedenCard
+              odId={`parents-${index + 1}`}
+              num={section.num}
+              title={section.title}
+              description={section.description}
+              href={url(section.href)}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>

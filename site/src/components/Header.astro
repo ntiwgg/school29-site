@@ -14,6 +14,18 @@ interface Props {
 const { active } = Astro.props;
 
 const isActive = (href: string) => active === href;
+
+/**
+ * Активность кнопки-дропдауна: подсвечивается, если текущая страница
+ * принадлежит разделу. «ГИА» и «Наставничество» — общие разделы,
+ * поэтому подсвечиваются в обоих связанных меню.
+ */
+const sectionActive = (href: string): boolean => {
+  if (href === '/parents/') return active === href || active === '/gia/';
+  if (href === '/students/') return active === href || active === '/gia/' || active === '/nastavnichestvo/';
+  if (href === '/teachers/') return active === href || active === '/nastavnichestvo/';
+  return active === href;
+};
 ---
 
 <header class="site-header" data-od-id="site-header">
@@ -88,39 +100,43 @@ const isActive = (href: string) => active === href;
           <ul class="submenu">
             <li><a href={url('/sveden/')}>Все 14 подразделов</a></li>
             <li><a href={url('/sveden-teachers/')}>Педагогический состав</a></li>
-            <li><a href="#">Документы</a></li>
-            <li><a href="#">Платные образовательные услуги</a></li>
-            <li><a href="#">Организация питания</a></li>
+            <li><a href={url('/sveden/dokumenty/')}>Документы</a></li>
+            <li><a href={url('/sveden/platnye-obrazovatelnye-uslugi/')}>Платные образовательные услуги</a></li>
+            <li><a href={url('/sveden/organizaciya-pitaniya/')}>Организация питания</a></li>
           </ul>
         </li>
         <li class="nav-item"><a class:list={['nav-link', { 'is-active': isActive('/news/') }]} href={url('/news/')} aria-current={isActive('/news/') ? 'page' : undefined}>Новости</a></li>
         <li class="nav-item">
-          <button class="nav-toggle" type="button" aria-expanded="false" aria-haspopup="true">Родителям <span class="caret" aria-hidden="true"></span></button>
+          <button class:list={['nav-toggle', { 'is-active': sectionActive('/parents/') }]} type="button" aria-expanded="false" aria-haspopup="true">Родителям <span class="caret" aria-hidden="true"></span></button>
           <ul class="submenu">
-            <li><a href="#">Приём в 1 класс</a></li>
-            <li><a href="#">Приём в 10 класс</a></li>
-            <li><a href="#">Государственная итоговая аттестация (ГИА)</a></li>
-            <li><a href="#">Организация питания</a></li>
-            <li><a href="#">Частые вопросы</a></li>
-            <li><a href="#">Школа «Малышок»</a></li>
+            <li><a href={url('/parents/')}>Все разделы</a></li>
+            <li><a href={url('/parents/priem-1-klass/')}>Приём в 1 класс</a></li>
+            <li><a href={url('/parents/priem-10-klass/')}>Приём в 10 класс</a></li>
+            <li><a href={url('/gia/')}>Государственная итоговая аттестация (ГИА)</a></li>
+            <li><a href={url('/sveden/organizaciya-pitaniya/')}>Организация питания</a></li>
+            <li><a href={url('/parents/faq/')}>Частые вопросы</a></li>
+            <li><a href={url('/parents/malyshok/')}>Школа «Малышок»</a></li>
           </ul>
         </li>
         <li class="nav-item">
-          <button class="nav-toggle" type="button" aria-expanded="false" aria-haspopup="true">Ученикам <span class="caret" aria-hidden="true"></span></button>
+          <button class:list={['nav-toggle', { 'is-active': sectionActive('/students/') }]} type="button" aria-expanded="false" aria-haspopup="true">Ученикам <span class="caret" aria-hidden="true"></span></button>
           <ul class="submenu">
-            <li><a href="#">Государственная итоговая аттестация (ГИА)</a></li>
-            <li><a href="#">Одарённые дети</a></li>
-            <li><a href="#">Школьный спортивный клуб</a></li>
-            <li><a href="#">Наставничество</a></li>
-            <li><a href="#">Отдых и оздоровление детей</a></li>
+            <li><a href={url('/students/')}>Все разделы</a></li>
+            <li><a href={url('/gia/')}>Государственная итоговая аттестация (ГИА)</a></li>
+            <li><a href={url('/students/odarennye-deti/')}>Одарённые дети</a></li>
+            <li><a href={url('/students/sportklub/')}>Школьный спортивный клуб</a></li>
+            <li><a href={url('/nastavnichestvo/')}>Наставничество</a></li>
+            <li><a href={url('/students/spt/')}>Социально-психологическое тестирование (СПТ)</a></li>
+            <li><a href={url('/students/otdyh-detej/')}>Отдых и оздоровление детей</a></li>
           </ul>
         </li>
         <li class="nav-item">
-          <button class="nav-toggle" type="button" aria-expanded="false" aria-haspopup="true">Педагогам <span class="caret" aria-hidden="true"></span></button>
+          <button class:list={['nav-toggle', { 'is-active': sectionActive('/teachers/') }]} type="button" aria-expanded="false" aria-haspopup="true">Педагогам <span class="caret" aria-hidden="true"></span></button>
           <ul class="submenu">
-            <li><a href="#">Наставничество</a></li>
-            <li><a href="#">Снижение бюрократической нагрузки</a></li>
-            <li><a href="#">Документы</a></li>
+            <li><a href={url('/teachers/')}>Все разделы</a></li>
+            <li><a href={url('/nastavnichestvo/')}>Наставничество</a></li>
+            <li><a href={url('/teachers/nagruzka/')}>Снижение бюрократической нагрузки</a></li>
+            <li><a href={url('/sveden/dokumenty/')}>Документы</a></li>
           </ul>
         </li>
         <li class="nav-item">

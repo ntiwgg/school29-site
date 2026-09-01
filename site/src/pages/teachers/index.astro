@@ -1,0 +1,65 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SvedenCard from '../../components/SvedenCard.astro';
+import { url } from '../../lib/paths';
+
+const title = 'Педагогам — СОШ № 29 им. Сепсяковой Т.Ф.';
+const description = 'Информация для педагогов: наставничество, снижение бюрократической нагрузки, документы.';
+
+const sections = [
+  {
+    num: '01',
+    title: 'Наставничество',
+    description: 'Целевая модель наставничества: методические рекомендации, положение, «дорожная карта».',
+    href: '/nastavnichestvo/',
+  },
+  {
+    num: '02',
+    title: 'Снижение бюрократической нагрузки',
+    description: 'Федеральные и республиканские документы о снижении документационной нагрузки на педагогов, «горячая линия».',
+    href: '/teachers/nagruzka/',
+  },
+  {
+    num: '03',
+    title: 'Документы',
+    description: 'Устав школы, положения, правила внутреннего распорядка и другие документы образовательной организации.',
+    href: '/sveden/dokumenty/',
+  },
+];
+---
+
+<Layout title={title} description={description} active="/teachers/">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки" data-od-id="breadcrumbs">
+      <ol>
+        <li><a href={url('/')}>Главная</a></li>
+        <li><span aria-current="page">Педагогам</span></li>
+      </ol>
+    </nav>
+  </div>
+
+  <section class="page-hero" data-od-id="page-hero">
+    <div class="container">
+      <h1>Педагогам</h1>
+      <p class="lead">Раздел для педагогических работников: наставничество, снижение бюрократической нагрузки и документы школы.</p>
+    </div>
+  </section>
+
+  <section class="section" data-od-id="teachers-sections">
+    <div class="container">
+      <div class="grid grid-3">
+        {
+          sections.map((section, index) => (
+            <SvedenCard
+              odId={`teachers-${index + 1}`}
+              num={section.num}
+              title={section.title}
+              description={section.description}
+              href={url(section.href)}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>
