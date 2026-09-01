@@ -1333,3 +1333,31 @@ html.eye-friendly .article-body blockquote { color: #1c2b29; }
   .callout a { padding: 3px 0; }
   .footer-col a { padding: 4px 0; }
 }
+
+/* ---------- ERR-18: сайдбар «Сведений» — компактная лента на мобиле ---------- */
+@media (max-width: 720px) {
+  .side-nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem;
+    border-radius: var(--radius-sm);
+    scrollbar-width: thin;
+  }
+  /* Заголовок-ярлык остаётся видимым, ссылки прокручиваются под ним */
+  .side-nav-title {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    flex: none;
+    width: auto;
+    padding: 0.5rem 0.75rem;
+    background: var(--surface);
+    border-radius: 8px;
+  }
+  .side-nav a {
+    flex: none;
+    white-space: nowrap;
+  }
+}
