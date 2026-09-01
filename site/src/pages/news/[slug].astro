@@ -27,9 +27,14 @@ if (!isPublished(entry.data.date)) {
 const { title, date, tag, cover } = entry.data;
 const dateISO = date.toISOString().slice(0, 10);
 const { Content } = await render(entry);
+
+// <title> статьи — «Название — СОШ № 29» (≤ 70 символов по рекомендации).
+// Длинные названия обрезаются до 50 символов с многоточием.
+const shortName = title.length > 50 ? `${title.slice(0, 50).trimEnd()}…` : title;
+const pageTitle = `«${shortName} — СОШ № 29»`;
 ---
 
-<Layout title={`${title} — Новости — СОШ № 29 им. Сепсяковой Т.Ф.`} description={entry.data.excerpt} active="/news/">
+<Layout title={pageTitle} description={entry.data.excerpt} active="/news/">
   <div class="container">
     <nav class="breadcrumbs" aria-label="Хлебные крошки" data-od-id="breadcrumbs">
       <ol>

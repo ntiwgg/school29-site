@@ -3,6 +3,8 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
+  // Домен сайта: нужен для canonical и OG-тегов (полный URL страницы).
+  site: 'https://ntiwgg.github.io',
   // Сохраняем разметку 1:1 с исходным HTML-дизайном (в т.ч. пробелы
   // между inline-элементами), чтобы не менять визуал сайта.
   compressHTML: false,

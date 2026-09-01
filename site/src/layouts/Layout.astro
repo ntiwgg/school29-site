@@ -35,6 +35,19 @@ interface Props {
 }
 
 const { title, description, active, withGovLinkIcons = false } = Astro.props;
+
+// Полный URL текущей страницы: pathname уже включает base ('/school29-site/…'),
+// Astro.site — домен публикации. Используется в canonical и og:url.
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
+// Дефолт на случай, если страница не передала description
+// (meta description и og:description не должны отсутствовать).
+const pageDescription =
+  description ??
+  'Официальный сайт средней общеобразовательной школы № 29 имени Сепсяковой Т.Ф. города Петрозаводска.';
+
+const siteName = 'СОШ № 29 им. Сепсяковой Т.Ф.';
+const ogImage = 'https://ntiwgg.github.io/school29-site/assets/img/emblem.svg';
 ---
 
 <!DOCTYPE html>
@@ -43,7 +56,15 @@ const { title, description, active, withGovLinkIcons = false } = Astro.props;
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{title}</title>
-  {description && <meta name="description" content={description} />}
+  <meta name="description" content={pageDescription}>
+  <link rel="canonical" href={canonical}>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={pageDescription}>
+  <meta property="og:url" content={canonical}>
+  <meta property="og:image" content={ogImage}>
+  <meta property="og:site_name" content={siteName}>
+  <meta property="og:locale" content="ru_RU">
   <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}assets/img/emblem.svg`}>
   <link rel="stylesheet" href={`${import.meta.env.BASE_URL}assets/css/styles.css`}>
 </head>
