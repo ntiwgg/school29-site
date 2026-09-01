@@ -1315,3 +1315,21 @@ html.eye-friendly .article-body blockquote { color: #1c2b29; }
   .table-requisites th,
   .table-requisites td { padding: 0.7rem 0.75rem; }
 }
+
+/* ---------- ERR-17: тач-таргеты ≥ 24px на мобиле ---------- */
+@media (max-width: 720px) {
+  /* Инлайновые ссылки: вертикальный паддинг расширяет зону клика,
+     не меняя строчную разметку */
+  .header-contacts a { min-height: 24px; }
+  .card-arrow,
+  .widget-link,
+  .section-link,
+  .file-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+  }
+  .breadcrumbs a { padding: 2px 0; }
+  .callout a { padding: 3px 0; }
+  .footer-col a { padding: 4px 0; }
+}
