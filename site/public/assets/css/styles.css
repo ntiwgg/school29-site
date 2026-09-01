@@ -1201,3 +1201,9 @@ html.eye-friendly .article-body blockquote { color: #1c2b29; }
 }
 .file-link:hover { color: var(--accent-strong); text-decoration: underline; }
 .file-link svg { flex: none; }
+
+/* ERR-15: не даём длинным строкам (URL, таблицы) растягивать страницу */
+.content-block,
+.article-body,
+.side-nav,
+.table-wrap { overflow-wrap: break-word; }
