@@ -1215,3 +1215,7 @@ html.eye-friendly .article-body blockquote { color: #1c2b29; }
   max-width: 100%;
   overflow-x: auto;
 }
+
+/* ERR-15 доп 2: строки документов (.doc-link) — перенос вместо разлива */
+.doc-link { flex-wrap: wrap; }
+.doc-size { white-space: normal; margin-left: auto; }
