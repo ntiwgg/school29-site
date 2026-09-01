@@ -26,6 +26,9 @@ jobs:
           cache-dependency-path: site/package-lock.json
       - run: npm ci
         working-directory: site
+      - name: Type check
+        run: npx astro check
+        working-directory: site
       - run: npm run build
         working-directory: site
       - uses: actions/configure-pages@v6
@@ -33,3 +36,32 @@ jobs:
         with:
           path: site/dist
       - uses: actions/deploy-pages@v5
+
+  # Проверка ссылок живого сайта после деплоя.
+  #
+  # В npm нет официального пакета lychee (`npx lychee` устанавливает
+  # посторонний проект lychee@0.2.12 без исполняемого файла), поэтому
+  # бинарник скачивается напрямую из релизов lycheeverse/lychee.
+  # Версия зафиксирована (v0.24.2 — актуальная на момент настройки).
+  #
+  # В lychee нет флага --exclude-external; эквивалент — фильтр
+  # --include: проверяются только внутренние ссылки сайта.
+  link-check:
+    needs: [build]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Install lychee
+        run: |
+          curl -sL -o /tmp/lychee.tar.gz \
+            https://github.com/lycheeverse/lychee/releases/download/lychee-v0.24.2/lychee-x86_64-unknown-linux-gnu.tar.gz
+          tar -xzf /tmp/lychee.tar.gz -C /tmp
+          echo "/tmp/lychee-x86_64-unknown-linux-gnu" >> "$GITHUB_PATH"
+      - name: Check internal links on live site
+        # Пауза перед запуском: GitHub Pages может ещё раздавать новый деплой.
+        run: |
+          sleep 20
+          lychee --no-progress --accept 200,204,403,429 --max-concurrency 8 \
+            --include '^https://ntiwgg\.github\.io/school29-site/' \
+            https://ntiwgg.github.io/school29-site/
