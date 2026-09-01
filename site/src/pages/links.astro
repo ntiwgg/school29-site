@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { url } from '../lib/paths';
+
+/**
+ * «Полезные ссылки» — официальные государственные ресурсы.
+ * Все URL проверены на доступность (HTTP 200); ссылки, не отвечающие
+ * на момент публикации (gia.edu.ru, centreptz.ru), не включены.
+ */
+const title = 'Полезные ссылки — СОШ № 29 им. Сепсяковой Т.Ф.';
+const description =
+  'Официальные государственные ресурсы: Минпросвещения России, Госуслуги, ФГИС «Моя школа», Рособрнадзор, портал ГИА и другие.';
+
+/** Внешние ссылки открываются в новой вкладке */
+const ext = { target: '_blank', rel: 'noopener' };
+---
+
+<Layout title={title} description={description} active="/">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки" data-od-id="breadcrumbs">
+      <ol>
+        <li><a href={url('/')}>Главная</a></li>
+        <li><span aria-current="page">Полезные ссылки</span></li>
+      </ol>
+    </nav>
+  </div>
+
+  <section class="page-hero" data-od-id="page-hero">
+    <div class="container">
+      <h1>Полезные ссылки</h1>
+      <p class="lead">Официальные государственные ресурсы в сфере образования: для учеников, родителей и педагогов.</p>
+    </div>
+  </section>
+
+  <div class="layout container">
+    <div class="content-block" data-od-id="links-content">
+      <h2>Официальные органы</h2>
+      <ul>
+        <li><a href="https://edu.gov.ru/" {...ext}>Министерство просвещения Российской Федерации</a> — edu.gov.ru</li>
+        <li><a href="https://minobrnauki.gov.ru/" {...ext}>Министерство науки и высшего образования Российской Федерации</a> — minobrnauki.gov.ru</li>
+        <li><a href="https://obrnadzor.gov.ru/" {...ext}>Федеральная служба по надзору в сфере образования и науки (Рособрнадзор)</a> — obrnadzor.gov.ru</li>
+        <li><a href="https://minedu.gov.karelia.ru/" {...ext}>Министерство образования и спорта Республики Карелия</a> — minedu.gov.karelia.ru</li>
+        <li><a href="https://petrozavodsk-mo.ru/" {...ext}>Администрация Петрозаводского городского округа</a> — petrozavodsk-mo.ru</li>
+      </ul>
+
+      <h2>Электронные сервисы</h2>
+      <ul>
+        <li><a href="https://www.gosuslugi.ru/" {...ext}>Госуслуги — портал государственных услуг Российской Федерации</a> — gosuslugi.ru</li>
+        <li><a href="https://myschool.edu.ru/" {...ext}>ФГИС «Моя школа» — электронный дневник, домашние задания, материалы уроков</a> — myschool.edu.ru</li>
+        <li><a href="https://obrnadzor.gov.ru/navigator-gia/" {...ext}>Портал ГИА — навигатор по ЕГЭ, ОГЭ и итоговому сочинению</a> — obrnadzor.gov.ru/navigator-gia</li>
+        <li><a href="https://bus.gov.ru/" {...ext}>bus.gov.ru — официальный сайт для размещения информации о государственных учреждениях (независимая оценка качества)</a> — bus.gov.ru</li>
+      </ul>
+
+      <h2>Родителям и детям</h2>
+      <ul>
+        <li><a href="https://telefon-doveria.ru/" {...ext}>Всероссийский телефон доверия для детей, подростков и их родителей: 8-800-2000-122</a> — telefon-doveria.ru</li>
+      </ul>
+
+      <p>
+        Если вы не нашли нужный ресурс, обратитесь через страницу <a href={url('/contacts/')}>«Контакты»</a>
+        — мы поможем найти официальный источник информации.
+      </p>
+    </div>
+  </div>
+</Layout>

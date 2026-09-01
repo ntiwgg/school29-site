@@ -1,0 +1,98 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { url } from '../lib/paths';
+
+/**
+ * «Карта сайта» — все опубликованные разделы и подразделы.
+ * Ссылки — реальные маршруты сайта (совпадают с меню шапки).
+ */
+const title = 'Карта сайта — СОШ № 29 им. Сепсяковой Т.Ф.';
+const description = 'Карта сайта школы № 29 имени Сепсяковой Т.Ф.: все разделы и подразделы официального сайта.';
+---
+
+<Layout title={title} description={description} active="/">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки" data-od-id="breadcrumbs">
+      <ol>
+        <li><a href={url('/')}>Главная</a></li>
+        <li><span aria-current="page">Карта сайта</span></li>
+      </ol>
+    </nav>
+  </div>
+
+  <section class="page-hero" data-od-id="page-hero">
+    <div class="container">
+      <h1>Карта сайта</h1>
+      <p class="lead">Все разделы и подразделы официального сайта МБОУ Петрозаводского ГО «СОШ № 29 им. Сепсяковой Т.Ф.».</p>
+    </div>
+  </section>
+
+  <div class="layout container">
+    <div class="content-block" data-od-id="sitemap-content">
+      <h2>Основные разделы</h2>
+      <ul>
+        <li><a href={url('/')}>Главная</a></li>
+        <li><a href={url('/o-shkole/')}>О школе</a> — <a href={url('/o-shkole/#history')}>история</a>, <a href={url('/o-shkole/#achievements')}>достижения</a>, <a href={url('/o-shkole/#rzd')}>опорная школа ОАО «РЖД»</a></li>
+        <li><a href={url('/sveden/')}>Сведения об образовательной организации</a></li>
+        <li><a href={url('/news/')}>Новости</a></li>
+        <li><a href={url('/bezopasnost/')}>Безопасность</a></li>
+        <li><a href={url('/contacts/')}>Контакты</a></li>
+      </ul>
+
+      <h2>Сведения об образовательной организации</h2>
+      <ul>
+        <li><a href={url('/sveden/osnovnye-svedeniya/')}>Основные сведения</a></li>
+        <li><a href={url('/sveden/struktura-i-organy-upravleniya/')}>Структура и органы управления</a></li>
+        <li><a href={url('/sveden/dokumenty/')}>Документы</a></li>
+        <li><a href={url('/sveden/obrazovanie/')}>Образование</a></li>
+        <li><a href={url('/sveden/rukovodstvo/')}>Руководство</a></li>
+        <li><a href={url('/sveden-teachers/')}>Педагогический состав</a></li>
+        <li><a href={url('/sveden/materialno-tehnicheskoe-obespechenie/')}>Материально-техническое обеспечение. Доступная среда</a></li>
+        <li><a href={url('/sveden/platnye-obrazovatelnye-uslugi/')}>Платные образовательные услуги</a></li>
+        <li><a href={url('/sveden/finansovo-hozyaystvennaya-deyatelnost/')}>Финансово-хозяйственная деятельность</a></li>
+        <li><a href={url('/sveden/vakantnye-mesta/')}>Вакантные места для приёма</a></li>
+        <li><a href={url('/sveden/stipendii-i-mery-podderzhki/')}>Стипендии и меры поддержки</a></li>
+        <li><a href={url('/sveden/mezhdunarodnoe-sotrudnichestvo/')}>Международное сотрудничество</a></li>
+        <li><a href={url('/sveden/organizaciya-pitaniya/')}>Организация питания</a></li>
+        <li><a href={url('/sveden/obrazovatelnye-standarty/')}>Образовательные стандарты и требования</a></li>
+      </ul>
+
+      <h2>Родителям</h2>
+      <ul>
+        <li><a href={url('/parents/')}>Все разделы для родителей</a></li>
+        <li><a href={url('/parents/priem-1-klass/')}>Приём в 1 класс</a></li>
+        <li><a href={url('/parents/priem-10-klass/')}>Приём в 10 класс</a></li>
+        <li><a href={url('/gia/')}>Государственная итоговая аттестация (ГИА)</a></li>
+        <li><a href={url('/sveden/organizaciya-pitaniya/')}>Организация питания</a></li>
+        <li><a href={url('/parents/faq/')}>Частые вопросы</a></li>
+        <li><a href={url('/parents/malyshok/')}>Школа «Малышок»</a></li>
+      </ul>
+
+      <h2>Ученикам</h2>
+      <ul>
+        <li><a href={url('/students/')}>Все разделы для учеников</a></li>
+        <li><a href={url('/gia/')}>Государственная итоговая аттестация (ГИА)</a></li>
+        <li><a href={url('/students/odarennye-deti/')}>Одарённые дети</a></li>
+        <li><a href={url('/students/sportklub/')}>Школьный спортивный клуб</a></li>
+        <li><a href={url('/nastavnichestvo/')}>Наставничество</a></li>
+        <li><a href={url('/students/spt/')}>Социально-психологическое тестирование (СПТ)</a></li>
+        <li><a href={url('/students/otdyh-detej/')}>Отдых и оздоровление детей</a></li>
+      </ul>
+
+      <h2>Педагогам</h2>
+      <ul>
+        <li><a href={url('/teachers/')}>Все разделы для педагогов</a></li>
+        <li><a href={url('/nastavnichestvo/')}>Наставничество</a></li>
+        <li><a href={url('/teachers/nagruzka/')}>Снижение бюрократической нагрузки</a></li>
+        <li><a href={url('/sveden/dokumenty/')}>Документы</a></li>
+      </ul>
+
+      <h2>Служебные страницы</h2>
+      <ul>
+        <li><a href={url('/privacy/')}>Политика обработки персональных данных</a></li>
+        <li><a href={url('/links/')}>Полезные ссылки</a></li>
+        <li><a href={url('/sitemap/')}>Карта сайта</a></li>
+      </ul>
+    </div>
+  </div>
+</Layout>

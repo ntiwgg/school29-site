@@ -176,7 +176,7 @@ function telHref(phone: string): string {
         </div>
         <div class="consent">
           <input id="f-consent" name="consent" type="checkbox" required>
-          <label for="f-consent">Я даю <a href="#">согласие на обработку персональных данных</a> в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ <span class="req" aria-hidden="true">*</span></label>
+          <label for="f-consent">Я даю <a href={url('/privacy/')}>согласие на обработку персональных данных</a> в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ <span class="req" aria-hidden="true">*</span></label>
         </div>
         <div>
           <button class="btn btn-primary btn-lg" type="submit">Отправить обращение</button>

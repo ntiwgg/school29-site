@@ -156,7 +156,7 @@ const description = 'Официальный сайт средней общеоб
           </div>
           <h3>«Решаем вместе»</h3>
           <p>Платформа обратной связи с Госуслуг: сообщите о проблеме, задайте вопрос или оцените работу школы.</p>
-          <a class="widget-link" href="#">Написать сообщение →</a>
+          <a class="widget-link" href="https://pos.gosuslugi.ru/form/" target="_blank" rel="noopener">Написать сообщение →</a>
         </div>
         <div class="widget" data-od-id="widget-rating">
           <div class="widget-icon">
@@ -165,7 +165,7 @@ const description = 'Официальный сайт средней общеоб
           <h3>Независимая оценка качества</h3>
           <div class="stars" role="img" aria-label="Рейтинг 4,5 из 5">★★★★<span style="opacity:.35">★</span></div>
           <p>Итоговая оценка на bus.gov.ru — <span class="rating-num">4,5 из 5</span>. Ваше мнение помогает нам становиться лучше.</p>
-          <a class="widget-link" href="#">Оставить отзыв на bus.gov.ru →</a>
+          <a class="widget-link" href="https://bus.gov.ru/qrcode/rate/24091" target="_blank" rel="noopener">Оставить отзыв на bus.gov.ru →</a>
         </div>
         <div class="widget widget-gosuslugi" data-od-id="widget-first-class">
           <div class="widget-icon">
@@ -173,7 +173,7 @@ const description = 'Официальный сайт средней общеоб
           </div>
           <h3>Запись в 1 класс</h3>
           <p>Подайте заявление о приёме в первый класс через портал «Госуслуги» — быстро и без очередей.</p>
-          <a class="widget-link" href="#">Подать заявление →</a>
+          <a class="widget-link" href="https://www.gosuslugi.ru/600368/1/form" target="_blank" rel="noopener">Подать заявление →</a>
         </div>
         <div class="widget widget-gosuslugi" data-od-id="widget-my-school">
           <div class="widget-icon">
@@ -181,7 +181,7 @@ const description = 'Официальный сайт средней общеоб
           </div>
           <h3>ГИС «Моя школа»</h3>
           <p>Электронный дневник, домашние задания и материалы уроков в единой системе для учеников и родителей.</p>
-          <a class="widget-link" href="#">Войти в «Мою школу» →</a>
+          <a class="widget-link" href="https://myschool.edu.ru/" target="_blank" rel="noopener">Войти в «Мою школу» →</a>
         </div>
       </div>
     </div>
@@ -197,25 +197,21 @@ const description = 'Официальный сайт средней общеоб
         </div>
       </div>
       <div class="quick-links">
-        <a class="quick-link" href="#" data-od-id="quick-1class">
+        <a class="quick-link" href={url('/parents/priem-1-klass/')} data-od-id="quick-1class">
           <span class="ql-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/></svg></span>
           Приём в 1 класс
         </a>
-        <a class="quick-link" href="#" data-od-id="quick-gia">
+        <a class="quick-link" href={url('/gia/')} data-od-id="quick-gia">
           <span class="ql-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v5l-6 9a2 2 0 0 0 2 3h12a2 2 0 0 0 2-3l-6-9V3"/><path d="M7 14h10"/></svg></span>
           ГИА-9 и ГИА-11
         </a>
-        <a class="quick-link" href="#" data-od-id="quick-food">
+        <a class="quick-link" href={url('/sveden/organizaciya-pitaniya/')} data-od-id="quick-food">
           <span class="ql-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg></span>
           Организация питания
         </a>
-        <a class="quick-link" href="#" data-od-id="quick-diary">
+        <a class="quick-link" href="https://myschool.edu.ru/" target="_blank" rel="noopener" data-od-id="quick-diary">
           <span class="ql-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
           Электронный дневник
-        </a>
-        <a class="quick-link" href="#" data-od-id="quick-bell">
-          <span class="ql-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span>
-          Расписание звонков
         </a>
         <a class="quick-link" href={url('/contacts/')} data-od-id="quick-contacts">
           <span class="ql-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>

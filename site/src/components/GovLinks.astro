@@ -14,12 +14,12 @@ const iconLandmark = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none
 const iconClock = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>';
 
 const chips = [
-  { label: 'Минпросвещения России', icon: withIcons ? iconLandmark : undefined },
-  { label: 'Минобрнауки России', icon: withIcons ? iconClock : undefined },
-  { label: 'Госуслуги' },
-  { label: '«Решаем вместе»' },
-  { label: 'bus.gov.ru — оценка качества' },
-  { label: 'Управление образования Администрации ПГО' },
+  { href: 'https://edu.gov.ru/', label: 'Минпросвещения России', icon: withIcons ? iconLandmark : undefined },
+  { href: 'https://minobrnauki.gov.ru/', label: 'Минобрнауки России', icon: withIcons ? iconClock : undefined },
+  { href: 'https://www.gosuslugi.ru/', label: 'Госуслуги' },
+  { href: 'https://pos.gosuslugi.ru/form/', label: '«Решаем вместе»' },
+  { href: 'https://bus.gov.ru/qrcode/rate/24091', label: 'bus.gov.ru — оценка качества' },
+  { href: 'https://petrozavodsk-mo.ru/', label: 'Управление образования Администрации ПГО' },
 ];
 ---
 
@@ -27,7 +27,7 @@ const chips = [
   <div class="container">
     {
       chips.map((chip) => (
-        <a class="gov-chip" href="#">
+        <a class="gov-chip" href={chip.href} target="_blank" rel="noopener">
           {chip.icon && <Fragment set:html={chip.icon} />}
           {chip.label}
         </a>
