@@ -1207,3 +1207,10 @@ html.eye-friendly .article-body blockquote { color: #1c2b29; }
 .article-body,
 .side-nav,
 .table-wrap { overflow-wrap: break-word; }
+
+/* ERR-15 доп: таблицы в контенте (markdown) — внутренний скролл вместо разлива страницы */
+.content-block table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
