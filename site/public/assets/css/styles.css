@@ -1270,8 +1270,10 @@ html.eye-friendly .article-body blockquote { color: #1c2b29; }
 .side-nav,
 .table-wrap { overflow-wrap: break-word; }
 
-/* ERR-15 доп: таблицы в контенте (markdown) — внутренний скролл вместо разлива страницы */
-.content-block table {
+/* ERR-15 доп: таблицы в контенте (markdown) — внутренний скролл вместо разлива страницы.
+   :not(.table-wrap table) — не трогаем таблицы в скролл-обёртках: у них своё поведение
+   (min-width + overflow-x у .table-wrap, ERR-16). */
+.content-block table:not(.table-wrap table) {
   display: block;
   min-width: 0;
   max-width: 100%;
@@ -1281,3 +1283,35 @@ html.eye-friendly .article-body blockquote { color: #1c2b29; }
 /* ERR-15 доп 2: строки документов (.doc-link) — перенос вместо разлива */
 .doc-link { flex-wrap: wrap; }
 .doc-size { white-space: normal; margin-left: auto; }
+
+/* ---------- ERR-16: таблицы на мобиле ---------- */
+@media (max-width: 720px) {
+  /* Педагоги (sveden-teachers): первая колонка «ФИО» — sticky при горизонтальном скролле.
+     border-collapse: separate обязателен — position: sticky не работает с collapse. */
+  .table-teachers table {
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  .table-teachers th:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    background: var(--surface-2);
+    box-shadow: 1px 0 0 0 var(--border);
+  }
+  .table-teachers td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: var(--surface);
+    box-shadow: 1px 0 0 0 var(--border);
+  }
+  .table-teachers tbody tr:nth-child(even) td:first-child { background: #f9faf8; }
+  .table-teachers tbody tr:hover td:first-child { background: var(--accent-soft); }
+
+  /* Реквизиты (contacts): отменяем глобальный min-width: 640px,
+     таблица вписывается в экран без горизонтального скролла */
+  .table-requisites table { min-width: 0; }
+  .table-requisites th,
+  .table-requisites td { padding: 0.7rem 0.75rem; }
+}
