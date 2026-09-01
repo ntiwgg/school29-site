@@ -4,7 +4,7 @@ import { getEntry } from 'astro:content';
 import { url } from '../lib/paths';
 
 const title = 'Контакты — СОШ № 29 им. Сепсяковой Т.Ф.';
-const description = 'Контакты школы № 29 имени Сепсяковой Т.Ф.: адрес, телефоны, электронная почта, режим работы, форма обращений граждан.';
+const description = 'Контакты школы № 29 имени Сепсяковой Т.Ф.: адрес, телефоны, электронная почта, режим работы, порядок обращений граждан.';
 
 /**
  * Единая запись коллекции contacts (src/content/contacts.md) —
@@ -23,7 +23,7 @@ function splitLabelValue(line: string): { label: string; value: string } {
   return { label: line.slice(0, separator), value: line.slice(separator + 2) };
 }
 
-/** «+7 (8142) 78-00-29» → tel:+78142780029 (только цифры) */
+/** «+7 (8142) 33-20-29» → tel:+78142332029 (только цифры) */
 function telHref(phone: string): string {
   return `tel:+${phone.replace(/\D/g, '')}`;
 }
@@ -42,7 +42,7 @@ function telHref(phone: string): string {
   <section class="page-hero" data-od-id="page-hero">
     <div class="container">
       <h1>Контакты</h1>
-      <p class="lead">Адрес, телефоны, режим работы школы и форма для обращений граждан.</p>
+      <p class="lead">Адрес, телефоны, режим работы школы и порядок обращений граждан.</p>
     </div>
   </section>
 
@@ -141,49 +141,14 @@ function telHref(phone: string): string {
         </table>
       </div>
 
-      <!-- ФОРМА ОБРАЩЕНИЙ -->
+      <!-- ОБРАЩЕНИЯ ГРАЖДАН -->
       <h2 id="appeal-form" style="scroll-margin-top:110px; margin-top:2rem;">Обращения граждан</h2>
-      <p>Заполните форму — ответ будет направлен на указанный адрес электронной почты. Сообщение о персональных данных не публикуются.</p>
-      <form class="form" action="#" method="post" data-od-id="appeal-form">
-        <div class="form-grid">
-          <div>
-            <label for="f-name">Фамилия, имя, отчество <span class="req" aria-hidden="true">*</span></label>
-            <input id="f-name" name="name" type="text" required autocomplete="name">
-          </div>
-          <div>
-            <label for="f-email">Электронная почта <span class="req" aria-hidden="true">*</span></label>
-            <input id="f-email" name="email" type="email" required autocomplete="email">
-          </div>
-          <div>
-            <label for="f-phone">Телефон</label>
-            <input id="f-phone" name="phone" type="tel" autocomplete="tel">
-          </div>
-          <div>
-            <label for="f-topic">Тема обращения</label>
-            <select id="f-topic" name="topic">
-              <option value="general">Общие вопросы</option>
-              <option value="admission">Приём в школу</option>
-              <option value="gia">Государственная итоговая аттестация</option>
-              <option value="food">Организация питания</option>
-              <option value="security">Информационная безопасность</option>
-              <option value="other">Другое</option>
-            </select>
-          </div>
-        </div>
-        <div>
-          <label for="f-text">Текст обращения <span class="req" aria-hidden="true">*</span></label>
-          <textarea id="f-text" name="text" required placeholder="Опишите ваш вопрос. Старайтесь указывать класс ребёнка, если вопрос касается учёбы."></textarea>
-        </div>
-        <div class="consent">
-          <input id="f-consent" name="consent" type="checkbox" required>
-          <label for="f-consent">Я даю <a href={url('/privacy/')}>согласие на обработку персональных данных</a> в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ <span class="req" aria-hidden="true">*</span></label>
-        </div>
-        <div>
-          <button class="btn btn-primary btn-lg" type="submit">Отправить обращение</button>
-          <p class="hint" style="margin-top:.6rem;">Поля, отмеченные <span class="req">*</span>, обязательны для заполнения.</p>
-        </div>
-        <p class="form-note">Обращения, направленные через форму, носят информационный характер и не являются официальными обращениями в порядке, установленном Федеральным законом от 02.05.2006 № 59-ФЗ «О порядке рассмотрения обращений граждан Российской Федерации». Для официального обращения используйте портал «Госуслуги» или личный приём.</p>
-      </form>
+      <p>Официальные обращения, направленные в порядке, установленном Федеральным законом от 02.05.2006 № 59-ФЗ «О порядке рассмотрения обращений граждан Российской Федерации», принимаются:</p>
+      <ul>
+        <li>через платформу «Решаем вместе» на портале Госуслуг: <a href="https://pos.gosuslugi.ru/form/" target="_blank" rel="noopener">pos.gosuslugi.ru/form/</a>;</li>
+        <li>по электронной почте: <a href={`mailto:${email}`}>{email}</a>;</li>
+        <li>на личном приёме по адресу: {address} — график работы: {workhours}.</li>
+      </ul>
     </div>
   </div>
 </Layout>
