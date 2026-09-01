@@ -1211,6 +1211,7 @@ html.eye-friendly .article-body blockquote { color: #1c2b29; }
 /* ERR-15 доп: таблицы в контенте (markdown) — внутренний скролл вместо разлива страницы */
 .content-block table {
   display: block;
+  min-width: 0;
   max-width: 100%;
   overflow-x: auto;
 }
