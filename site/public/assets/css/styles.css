@@ -1157,6 +1157,10 @@ html.eye-friendly .card-meta,
 html.eye-friendly .news-date,
 html.eye-friendly .breadcrumbs { color: #333f3d; }
 
+/* ERR-35: при 19px корне чипы госссылок (.gov-chip, nowrap) становятся шире
+   360px-вьюпорта и разливают страницу — разрешаем перенос текста внутри чипа */
+html.eye-friendly .gov-chip { white-space: normal; }
+
 /* ---------- 25. СТРАНИЦА НОВОСТИ (ARTICLE) ---------- */
 .article { padding: clamp(1.5rem, 3vw, 2.5rem) 0 clamp(3rem, 6vw, 4.5rem); }
 .article .container { max-width: 860px; }
