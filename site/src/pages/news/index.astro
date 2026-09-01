@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import NewsCard from '../../components/NewsCard.astro';
+import NewsFilters from '../../components/NewsFilters.astro';
 import { getCollection } from 'astro:content';
 import { isPublished } from '../../lib/news';
 import { url } from '../../lib/paths';
@@ -9,6 +10,9 @@ import { url } from '../../lib/paths';
 const news = (await getCollection('news'))
   .filter((entry) => isPublished(entry.data.date))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+/** Рубрики для фильтров — уникальные теги опубликованных новостей, по алфавиту */
+const tags = [...new Set(news.map((entry) => entry.data.tag))].sort((a, b) => a.localeCompare(b, 'ru'));
 
 const title = 'Новости — СОШ № 29 им. Сепсяковой Т.Ф.';
 const description = 'Новости школы № 29 имени Сепсяковой Т.Ф.: события, достижения, объявления и безопасность.';
@@ -33,31 +37,13 @@ const description = 'Новости школы № 29 имени Сепсяко�
 
   <section class="section" data-od-id="news-list">
     <div class="container">
-      <!-- Фильтр для прототипа: переключатели без JS, активная рубрика помечена -->
-      <div class="news-filters" role="group" aria-label="Рубрики новостей">
-        <a class="filter-chip is-active" href="#" aria-current="true">Все</a>
-        <a class="filter-chip" href="#">События</a>
-        <a class="filter-chip" href="#">Достижения</a>
-        <a class="filter-chip" href="#">Объявления</a>
-        <a class="filter-chip" href="#">Спорт</a>
-        <a class="filter-chip" href="#">Безопасность</a>
-      </div>
+      <NewsFilters tags={tags} active={null} />
 
       <div class="grid auto-grid">
         {news.map((entry) => (
           <NewsCard news={entry} href={url(`/news/${entry.id}/`)} odId={`news-${entry.id}`} heading="h2" />
         ))}
       </div>
-
-      <nav class="pagination" aria-label="Страницы новостей">
-        <span class="is-current" aria-current="page">1</span>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <span class="page-ellipsis" aria-hidden="true">…</span>
-        <a href="#">12</a>
-        <a href="#" aria-label="Следующая страница">→</a>
-      </nav>
     </div>
   </section>
 </Layout>

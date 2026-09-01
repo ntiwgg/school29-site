@@ -1,0 +1,33 @@
+---
+/**
+ * Фильтры-чипы рубрик новостей: «Все новости» → /news/, каждая рубрика →
+ * /news/tag/<слаг>/. Используются на /news/ и на страницах рубрик.
+ * Активная рубрика подсвечена классом `is-active` и помечена aria-current="page".
+ */
+import { tagSlug } from '../lib/news';
+import { url } from '../lib/paths';
+
+interface Props {
+  /** Все рубрики (имена тегов из коллекции `news`), сортированные по алфавиту */
+  tags: string[];
+  /** Активная рубрика; null — активна лента «Все новости» */
+  active: string | null;
+}
+
+const { tags, active } = Astro.props;
+---
+
+<div class="news-filters" role="group" aria-label="Рубрики новостей">
+  <a
+    class:list={['filter-chip', { 'is-active': active === null }]}
+    href={url('/news/')}
+    aria-current={active === null ? 'page' : undefined}
+  >Все новости</a>
+  {tags.map((tag) => (
+    <a
+      class:list={['filter-chip', { 'is-active': active === tag }]}
+      href={url(`/news/tag/${tagSlug(tag)}/`)}
+      aria-current={active === tag ? 'page' : undefined}
+    >{tag}</a>
+  ))}
+</div>

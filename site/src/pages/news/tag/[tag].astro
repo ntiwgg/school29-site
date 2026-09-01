@@ -1,0 +1,74 @@
+---
+/**
+ * Страница рубрики новостей: /news/tag/<слаг>/ (например, /news/tag/sobytiya/).
+ * Генерируется статически для каждого тега, который есть хотя бы у одной
+ * опубликованной новости. Слаг — транслит рубрики из lib/news.ts (tagSlug).
+ */
+import Layout from '../../../layouts/Layout.astro';
+import NewsCard from '../../../components/NewsCard.astro';
+import NewsFilters from '../../../components/NewsFilters.astro';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import { isPublished, tagSlug } from '../../../lib/news';
+import { url } from '../../../lib/paths';
+
+export async function getStaticPaths() {
+  const news = await getCollection('news');
+  const published = news.filter((entry) => isPublished(entry.data.date));
+
+  // Рубрика → её опубликованные новости (свежие сверху)
+  const byTag = new Map<string, CollectionEntry<'news'>[]>();
+  for (const entry of published) {
+    const entries = byTag.get(entry.data.tag) ?? [];
+    entries.push(entry);
+    byTag.set(entry.data.tag, entries);
+  }
+
+  const tags = [...byTag.keys()].sort((a, b) => a.localeCompare(b, 'ru'));
+
+  return tags.map((tag) => ({
+    params: { tag: tagSlug(tag) },
+    props: {
+      tag,
+      entries: byTag.get(tag)!.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()),
+      tags,
+    },
+  }));
+}
+
+const { tag, entries, tags } = Astro.props;
+
+const title = `${tag} — Новости — СОШ № 29 им. Сепсяковой Т.Ф.`;
+const description = `Новости школы № 29 имени Сепсяковой Т.Ф. по рубрике «${tag}».`;
+---
+
+<Layout title={title} description={description} active="/news/">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки" data-od-id="breadcrumbs">
+      <ol>
+        <li><a href={url('/')}>Главная</a></li>
+        <li><a href={url('/news/')}>Новости</a></li>
+        <li><span aria-current="page">{tag}</span></li>
+      </ol>
+    </nav>
+  </div>
+
+  <section class="page-hero" data-od-id="page-hero">
+    <div class="container">
+      <h1>Новости: {tag}</h1>
+      <p class="lead">События, достижения и объявления. Актуальные новости также публикуются в официальной группе школы ВКонтакте — нашем госпаблике.</p>
+    </div>
+  </section>
+
+  <section class="section" data-od-id="news-list">
+    <div class="container">
+      <NewsFilters tags={tags} active={tag} />
+
+      <div class="grid auto-grid">
+        {entries.map((entry) => (
+          <NewsCard news={entry} href={url(`/news/${entry.id}/`)} odId={`news-${entry.id}`} heading="h2" />
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
