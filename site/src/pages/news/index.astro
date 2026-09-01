@@ -45,7 +45,7 @@ const description = 'Новости школы № 29 имени Сепсяко�
 
       <div class="grid auto-grid">
         {news.map((entry) => (
-          <NewsCard news={entry} href={url(`/news/${entry.id}/`)} odId={`news-${entry.id}`} />
+          <NewsCard news={entry} href={url(`/news/${entry.id}/`)} odId={`news-${entry.id}`} heading="h2" />
         ))}
       </div>
 

@@ -4,18 +4,24 @@
  * шапка, контент страницы в <main>, полоса госссылок и футер.
  *
  * Шрифт Golos Text подключён локально через @fontsource (self-host):
- * веса 400–900, используемые в дизайне (Google Fonts убран).
+ * только используемые в дизайне веса 400–800 (900 в CSS не встречается)
+ * и только подмножества cyrillic + latin (ext-подмножества не нужны).
+ * Google Fonts убран.
  */
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import GovLinks from '../components/GovLinks.astro';
 
-import '@fontsource/golos-text/400.css';
-import '@fontsource/golos-text/500.css';
-import '@fontsource/golos-text/600.css';
-import '@fontsource/golos-text/700.css';
-import '@fontsource/golos-text/800.css';
-import '@fontsource/golos-text/900.css';
+import '@fontsource/golos-text/cyrillic-400.css';
+import '@fontsource/golos-text/latin-400.css';
+import '@fontsource/golos-text/cyrillic-500.css';
+import '@fontsource/golos-text/latin-500.css';
+import '@fontsource/golos-text/cyrillic-600.css';
+import '@fontsource/golos-text/latin-600.css';
+import '@fontsource/golos-text/cyrillic-700.css';
+import '@fontsource/golos-text/latin-700.css';
+import '@fontsource/golos-text/cyrillic-800.css';
+import '@fontsource/golos-text/latin-800.css';
 
 interface Props {
   /** Заголовок страницы <title> */

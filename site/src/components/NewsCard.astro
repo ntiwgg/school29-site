@@ -15,9 +15,12 @@ interface Props {
   href: string;
   /** Идентификатор для дизайн-системы OpenDesign */
   odId: string;
+  /** Уровень заголовка карточки: h3 на главной (под h2-секциями), h2 на /news/ (под h1) */
+  heading?: 'h2' | 'h3';
 }
 
-const { news, href, odId } = Astro.props;
+const { news, href, odId, heading = 'h3' } = Astro.props;
+const Heading = heading;
 const { title, date, tag, excerpt, cover } = news.data;
 const dateISO = date.toISOString().slice(0, 10);
 ---
@@ -25,7 +28,7 @@ const dateISO = date.toISOString().slice(0, 10);
 <article class="card news-card" data-od-id={odId}>
   <div class="news-cover"><NewsIcon name={cover ?? 'megaphone'} /></div>
   <span class="card-meta"><time datetime={dateISO}>{formatDate(dateISO)}</time><span class={`tag ${TAG_CLASS_MAP[tag]}`}>{tag}</span></span>
-  <h3><a href={href}>{title}</a></h3>
+  <Heading><a href={href}>{title}</a></Heading>
   <p>{excerpt}</p>
   <a class="card-arrow" href={href}>Читать далее →</a>
 </article>
