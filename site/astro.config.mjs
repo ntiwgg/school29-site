@@ -1,8 +1,12 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
+  // Машинный sitemap.xml для поисковиков (интеграция генерирует только
+  // Astro-страницы; /admin/ из public/ в него не попадает).
+  integrations: [sitemap()],
   // Домен сайта: нужен для canonical и OG-тегов (полный URL страницы).
   site: 'https://ntiwgg.github.io',
   // Сохраняем разметку 1:1 с исходным HTML-дизайном (в т.ч. пробелы

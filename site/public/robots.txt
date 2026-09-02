@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+
+Sitemap: https://ntiwgg.github.io/school29-site/sitemap-index.xml
