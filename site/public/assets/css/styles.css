@@ -1112,6 +1112,9 @@ tbody tr:hover { background: var(--accent-soft); }
   .hero-badge svg { width: 13px; height: 13px; }
   .hero-fact b { font-size: 1rem; }
   .hero-fact span { font-size: 0.7rem; }
+
+  /* узкие телефоны (320px): чипам госссылок разрешаем перенос вместо разлива */
+  .gov-chip { white-space: normal; max-width: 100%; }
 }
 
 /* ---------- 23. PREFERS-REDUCED-MOTION ---------- */
