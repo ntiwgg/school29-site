@@ -1,3 +1,5 @@
+// ВАЖНО: схема коллекций дублируется в public/admin/config.yml (Decap).
+// При изменении коллекции/полей обнови ОБА файла, иначе админка и сборка разойдутся.
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
