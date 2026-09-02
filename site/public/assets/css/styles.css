@@ -1113,8 +1113,15 @@ tbody tr:hover { background: var(--accent-soft); }
   .hero-fact b { font-size: 1rem; }
   .hero-fact span { font-size: 0.7rem; }
 
-  /* узкие телефоны (320px): чипам госссылок разрешаем перенос вместо разлива */
-  .gov-chip { white-space: normal; max-width: 100%; }
+  /* Open Design: на ≤420px чип госссылки — скруглённый прямоугольник с переносом текста */
+  .gov-chip {
+    white-space: normal;
+    max-width: 100%;
+    border-radius: var(--radius-sm);
+    text-align: left;
+    line-height: 1.35;
+    align-items: flex-start;
+  }
 }
 
 /* ---------- 23. PREFERS-REDUCED-MOTION ---------- */
