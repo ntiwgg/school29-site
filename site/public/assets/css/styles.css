@@ -50,7 +50,11 @@
 /* ---------- 2. БАЗА ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 
-html { -webkit-text-size-adjust: 100%; }
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
@@ -64,6 +68,9 @@ body {
   flex-direction: column;
   min-height: 100vh;
 }
+
+/* Выделение текста — акцентная подложка */
+::selection { background: var(--accent); color: #fff; }
 
 h1, h2, h3, h4 {
   margin: 0 0 0.5em;
@@ -92,6 +99,13 @@ li { margin-bottom: 0.35em; }
   outline: 3px solid var(--accent);
   outline-offset: 2px;
   border-radius: 4px;
+}
+/* Фокус на тёмных панелях (топбар, футер) — белая обводка для контраста */
+.header-top a:focus-visible,
+.header-top button:focus-visible,
+.site-footer a:focus-visible,
+.site-footer button:focus-visible {
+  outline-color: #ffffff;
 }
 
 /* Якоря не прячутся под липкой шапкой (!important — перебивает инлайновые значения в прототипе) */
@@ -140,6 +154,14 @@ li { margin-bottom: 0.35em; }
   margin-bottom: 0.6rem;
 }
 
+/* Микроанимация появления первого экрана (отключается при prefers-reduced-motion) */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero > .container,
+.page-hero > .container { animation: rise-in 0.45s ease both; }
+
 /* ---------- 4. КНОПКИ ---------- */
 .btn {
   display: inline-flex;
@@ -157,8 +179,10 @@ li { margin-bottom: 0.35em; }
 }
 .btn-primary { background: var(--accent); color: var(--on-accent); box-shadow: var(--shadow-sm); }
 .btn-primary:hover { background: var(--accent-strong); color: var(--on-accent); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.btn-primary:active { transform: translateY(0); box-shadow: var(--shadow-sm); }
 .btn-outline { background: transparent; border-color: var(--accent); color: var(--accent); }
 .btn-outline:hover { background: var(--accent-soft); color: var(--accent-strong); }
+.btn-outline:active { transform: translateY(0); }
 .btn-ghost { background: var(--surface-2); color: var(--fg); }
 .btn-ghost:hover { background: var(--border); }
 .btn-lg { min-height: 52px; padding: 0.8rem 1.6rem; font-size: 1.0625rem; }
@@ -204,6 +228,7 @@ li { margin-bottom: 0.35em; }
   font: 500 0.8125rem var(--font);
   cursor: pointer;
   min-height: 32px;
+  transition: background 0.15s ease;
 }
 .eye-btn:hover { background: rgba(255, 255, 255, 0.14); }
 
@@ -258,10 +283,10 @@ li { margin-bottom: 0.35em; }
   font: 400 0.9375rem var(--font);
   color: var(--fg);
   background: var(--surface);
-  transition: border-color 0.15s ease;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 .search-form input::placeholder { color: #7b8b88; }
-.search-form input:focus { outline: none; border-color: var(--accent); }
+.search-form input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(10, 107, 99, 0.15); }
 .search-btn {
   position: absolute;
   right: 4px; top: 50%;
@@ -275,6 +300,7 @@ li { margin-bottom: 0.35em; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  transition: background 0.15s ease;
 }
 .search-btn:hover { background: var(--accent-strong); }
 
@@ -356,6 +382,10 @@ li { margin-bottom: 0.35em; }
 }
 .submenu a:hover { background: var(--accent-soft); color: var(--accent-strong); }
 
+/* Шапка шторки с кнопкой «Закрыть» (кнопку создаёт main.js).
+   На десктопе скрыта, включается в мобильном меню (см. блок 22). */
+.main-nav .menu-head { display: none; }
+
 /* ---------- 7. ХЛЕБНЫЕ КРОШКИ ---------- */
 .breadcrumbs { font-size: 0.8125rem; color: var(--muted); padding: 14px 0 0; }
 .breadcrumbs ol { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0; padding: 0; }
@@ -422,7 +452,7 @@ li { margin-bottom: 0.35em; }
   color: var(--accent-strong);
   box-shadow: var(--shadow-md);
 }
-.hero-badge svg { color: var(--gold); }
+.hero-badge svg { color: var(--gold); flex: none; }
 
 /* Полоса фактов (статистика) */
 .stats-strip { border-bottom: 1px solid var(--border); background: var(--surface); }
@@ -430,6 +460,11 @@ li { margin-bottom: 0.35em; }
 .stat { padding: 1.4rem 1.5rem; background: var(--surface); }
 .stat b { display: block; font-size: 1.5rem; font-weight: 800; color: var(--accent-strong); }
 .stat span { font-size: 0.85rem; color: var(--muted); }
+
+/* Полировка: цифры с равной шириной знаков — не «дышат» при смене значений */
+.stat b,
+.hero-fact b,
+.rating-num { font-variant-numeric: tabular-nums; }
 
 /* ---------- 9. СЕКЦИИ ---------- */
 .section { padding: clamp(2.5rem, 5vw, 4rem) 0; }
@@ -511,7 +546,9 @@ li { margin-bottom: 0.35em; }
   border-radius: var(--radius);
   padding: 1.25rem 1.5rem;
   align-items: start;
+  transition: box-shadow 0.15s ease;
 }
+.notice:hover { box-shadow: var(--shadow-sm); }
 .notice-important { background: var(--danger-soft); }
 .notice-icon {
   width: 42px; height: 42px;
@@ -539,7 +576,9 @@ li { margin-bottom: 0.35em; }
   gap: 0.7rem;
   position: relative;
   overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
 }
+.widget:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: var(--accent); }
 .widget-icon {
   width: 46px; height: 46px;
   border-radius: 12px;
@@ -912,6 +951,7 @@ tbody tr:hover { background: var(--accent-soft); }
   color: var(--fg);
   text-decoration: none;
   white-space: nowrap;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 .gov-chip:hover { border-color: var(--accent); color: var(--accent-strong); background: var(--accent-soft); }
 .gov-chip svg { color: var(--accent); }
@@ -985,7 +1025,33 @@ tbody tr:hover { background: var(--accent-soft); }
     border-top: 0;
   }
   body.menu-open .main-nav { transform: translateY(0); visibility: visible; }
+  /* Шторка открыта — шапка поднимается над остальным контентом */
+  body.menu-open .site-header { z-index: 120; }
   body.menu-open { overflow: hidden; }
+
+  /* Шапка шторки: видимая кнопка «Закрыть» (кнопку создаёт main.js) */
+  .main-nav .menu-head {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 0.5rem;
+  }
+  .menu-close {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0.4rem 0.7rem;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    color: var(--fg);
+    font: 600 0.9375rem var(--font);
+    cursor: pointer;
+  }
+  .menu-close:hover { border-color: var(--accent); color: var(--accent); }
+
   .nav-list { flex-direction: column; }
   .nav-item { border-bottom: 1px solid var(--border); }
   .nav-link, .nav-toggle {
@@ -1074,7 +1140,7 @@ tbody tr:hover { background: var(--accent-soft); }
   .hero-facts { gap: 0.9rem; padding-top: 0.6rem; }
   .hero-fact b { font-size: 1.1rem; }
   .hero-fact span { font-size: 0.75rem; }
-  .hero-visual { max-width: min(420px, 72vw); }
+  .hero-visual { max-width: min(420px, 72vw); margin-inline: auto; }
 
   /* ERR-34: футер компактнее — одна колонка, меньшие кегли и зазоры */
   .footer-main .container {
@@ -1108,7 +1174,7 @@ tbody tr:hover { background: var(--accent-soft); }
   .hero-eyebrow { font-size: 0.68rem; padding: 0.2rem 0.6rem; }
   .hero-sub { font-size: 0.8125rem; line-height: 1.4; }
   .hero-visual { max-width: 176px; }
-  .hero-badge { left: 6px; bottom: 6px; padding: 0.3rem 0.4rem; font-size: 0.62rem; gap: 0.25rem; }
+  .hero-badge { left: 6px; bottom: 6px; padding: 0.3rem 0.4rem; font-size: 0.62rem; gap: 0.25rem; max-width: calc(100% - 12px); }
   .hero-badge svg { width: 13px; height: 13px; }
   .hero-fact b { font-size: 1rem; }
   .hero-fact span { font-size: 0.7rem; }
@@ -1122,11 +1188,34 @@ tbody tr:hover { background: var(--accent-soft); }
     line-height: 1.35;
     align-items: flex-start;
   }
+  .gov-chip svg { flex: none; align-self: flex-start; margin-top: 2px; }
+}
+
+/* ---------- 22.5 ПОЛИРОВКА: ТАЧ-УСТРОЙСТВА ---------- */
+/* На тач-экранах hover «прилипает» после касания — отключаем подъёмы,
+   плашкам оставляем мягкую тень */
+@media (hover: none) {
+  .card:hover,
+  .widget:hover,
+  .quick-link:hover,
+  .notice:hover { transform: none; }
+  .card:hover,
+  .widget:hover,
+  .quick-link:hover { box-shadow: none; }
+  .card:hover,
+  .widget:hover { border-color: var(--border); }
+  .btn-primary:hover,
+  .btn-primary:active,
+  .btn-outline:hover,
+  .btn-outline:active { transform: none; }
+  .hero-badge,
+  .map-label { box-shadow: var(--shadow-sm); }
 }
 
 /* ---------- 23. PREFERS-REDUCED-MOTION ---------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
+    /* rise-in и остальные анимации отключаются этим же правилом */
     animation: none !important;
     transition: none !important;
     scroll-behavior: auto !important;
